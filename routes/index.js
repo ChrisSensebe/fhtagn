@@ -31,6 +31,7 @@ router.get('/archives', function(req ,res, next){
 /* POST createNewPost */
 /* POST createUser */
 /* POST editUserByID */
+/* POST uploadFile */
 /* POST customize */
 /* POST login */
 /* POST signup */
