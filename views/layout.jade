@@ -4,6 +4,7 @@ html
 		title= title
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel='stylesheet', href='//bootswatch.com/slate/bootstrap.min.css')
+		link(rel='icon' href='public/favicon.ico')
 		body
 			nav(class='navbar navbar-default navbar-fixed')
 				div(class='container')
@@ -13,15 +14,15 @@ html
 							span(class="icon-bar")
 							span(class="icon-bar")
 							span(class="icon-bar")
-						a(class='navbar-brand' href='')= title
+						a(class='navbar-brand' href='/')= title
 					div(class="collapse navbar-collapse")
 						ul(class="nav navbar-nav")
 							li
-								a(href='') Accueil
+								a(href='/') Accueil
 							li
-								a(href='') Tags
+								a(href='/tags') Tags
 							li
-								a(href='') Archives
+								a(href='/archives') Archives
 			block content
 		footer(class='footer')
 			div(class='container')
