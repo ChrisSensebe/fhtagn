@@ -1,12 +1,4 @@
-doctype html
-html
-	head
-		title= title
-		link(rel='stylesheet', href='/stylesheets/style.css')
-		link(rel='stylesheet', href='//bootswatch.com/slate/bootstrap.min.css')
-		link(rel='icon' href='public/favicon.ico')
-		body
-			nav(class='navbar navbar-default navbar-fixed')
+nav(class='navbar navbar-default navbar-fixed')
 				div(class='container')
 					div(class='navbar-header')
 						button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
@@ -23,9 +15,3 @@ html
 								a(href='/tags') Tags
 							li
 								a(href='/archives') Archives
-			block content
-		footer(class='footer')
-			div(class='container')
-				p(class='text-muted')= title
-		script(src='//code.jquery.com/jquery-2.1.4.min.js')
-		script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
