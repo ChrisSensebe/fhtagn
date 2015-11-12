@@ -4,4 +4,12 @@ block content
 	.container
 			.row
 				.col-md-12
-					p admin/newPost
+					h2.page-header New Post
+					form
+						label(for="title") Title
+						input(type="text" class="form-control" id="title")
+						label(for="post") Post
+						textarea(class="form-control" id="post")
+					button.btn.btn-primary.btn-form Save
+					button.btn.btn-primary.btn-form Save and exit
+					button.btn.btn-primary.btn-form Cancel

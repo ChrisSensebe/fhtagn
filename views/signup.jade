@@ -4,4 +4,12 @@ block content
 	.container
 			.row
 				.col-md-12
-					p admin/signup
+					h2.page-header Signup
+					form
+						label(for="login") Login
+						input(class="form-control" id="login")
+						label(for="email") Email
+						input(class="form-control" id="email" type="email")
+						label(for="password") Password
+						input(class="form-control" id="password" type="password")
+						button.btn.btn-primary.btn-form Signup
