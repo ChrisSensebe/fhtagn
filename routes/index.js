@@ -51,10 +51,6 @@ router.get('/admin/editPostById', function(req ,res, next){
 router.get('/admin/users', function(req ,res, next){
 	res.render('users', { title: 'Fhtagn | admin' });
 });
-/* GET createUser */
-router.get('/admin/createUser', function(req ,res, next){
-	res.render('createUser', { title: 'Fhtagn | admin' });
-});
 /* GET editUserById */
 router.get('/admin/editUserById', function(req ,res, next){
 	res.render('editPostById', { title: 'Fhtagn | editPostById' });
