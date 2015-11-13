@@ -20,16 +20,16 @@ router.get('/archives', function(req ,res, next){
 router.get('/admin/login', function(req ,res, next){
 	res.render('login', { title: 'Fhtagn | admin' });
 });
-/* GET signup */
-router.get('/admin/signup', function(req ,res, next){
-	res.render('signup', { title: 'Fhtagn | admin' });
+/* GET newUser */
+router.get('/admin/newUser', function(req ,res, next){
+	res.render('newUser', { title: 'Fhtagn | admin' });
 });
 /* POST login */
 router.post('/admin/login', function(req, res, next){
 	res.redirect('/admin', { title: 'Fhtagn | admin'});
 });
-/* POST signup */
-router.post('/admin/signup', function(req, res, next){
+/* POST newUser */
+router.post('/admin/newUser', function(req, res, next){
 	res.redirect('/admin', { title: 'Fhtagn | admin'});
 });
 
@@ -59,16 +59,12 @@ router.get('/admin/editUserById', function(req ,res, next){
 router.get('/admin/uploadfile', function(req ,res, next){
 	res.render('uploadFile', { title: 'Fhtagn | admin' });
 });
-/* GET themes */ 
+/* GET themes */
 router.get('/admin/themes', function(req ,res, next){
 	res.render('themes', { title: 'Fhtagn | admin' });
 });
 /* POST createNewPost */
 router.post('/admin/newPost', function(req, res, next){
-	res.redirect('/admin', { title: 'Fhtagn | admin'});
-});
-/* POST createUser */
-router.post('/admin/newUser', function(req, res, next){
 	res.redirect('/admin', { title: 'Fhtagn | admin'});
 });
 /* POST editPostById */
