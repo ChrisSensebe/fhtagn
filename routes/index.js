@@ -1,61 +1,71 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page */
+/*/
+/*  Site routes
+/*/
+
+/* home route */
 router.get('/', function(req, res, next) {
   res.render('siteViews/index', { title : 'Fhtagn' });
 });
-/* GET post page */
+
+/* posts routes */
 router.get('/post', function(req, res, next){
 	res.render('siteViews/post', { title : 'Fhtagn' });
 });
-/* GET post page */
 router.get('/post',function(req, res, next){
 	res.render('siteViews/post', { title : 'Fhtagn' });
 });
-/* GET tags page */
+
+/* tags routes */
 router.get('/tags', function(req ,res, next){
 	res.render('siteViews/tags', { title : 'Fhtagn' });
 });
-/* GET tag page */
 router.get('/tag', function(req, res, next){
 	res.render('siteViews/tag', { title : 'Fhtagn' });
 });
-/* GET archives page */
+
+/* archives route */
 router.get('/archives', function(req ,res, next){
 	res.render('siteViews/archives', { title : 'Fhtagn' });
 });
-/* GET about page */
+
+/* about route */
 router.get('/about', function(req, res, next){
 	res.render('siteViews/about', { title : 'Fhtagn' });
 });
 
-/* GET login */
+/*/
+/*  Admin routes
+/*/
+
+// unprotected routes
+
+/* login routes */
 router.get('/admin/login', function(req ,res, next){
-	res.render('login', { title: 'Fhtagn | admin' });
+	res.render('adminViews/login', { title: 'Fhtagn | admin' });
 });
-/* GET newUser */
-router.get('/admin/newUser', function(req ,res, next){
-	res.render('newUser', { title: 'Fhtagn | admin' });
-});
-/* POST login */
 router.post('/admin/login', function(req, res, next){
-	res.redirect('/admin', { title: 'Fhtagn | admin'});
-});
-/* POST newUser */
-router.post('/admin/newUser', function(req, res, next){
-	res.redirect('/admin', { title: 'Fhtagn | admin'});
+	res.redirect('/admin');
 });
 
-/* Protected routes */
+// protected routes
 
-/* GET adminHome */
-router.get('/admin/', function(req ,res, next){
-	res.render('adminHome', { title: 'Fhtagn | admin' });
+/* adminHome route */
+router.get('/admin', function(req ,res, next){
+	res.render('adminViews/adminHome', { title: 'Fhtagn | admin' });
 });
-/* GET editPostById */
+
+/* posts  routes */
+router.get('admin/newPost', function(req, res, next){
+	res.render('adminViews/editPost', { title : 'Fhtagn | admin' });
+});
 router.get('/admin/editPost', function(req ,res, next){
-	res.render('editPost', { title: 'Fhtagn | editPostById' });
+	res.render('adminViews/editPost', { title: 'Fhtagn | admin' });
+});
+router.post('/admin/savePost', function(req ,res, next){
+	res.redirect('adminViews/admin');
 });
 /* GET admin/tags */
 /* GET addNewTag */
@@ -64,9 +74,17 @@ router.get('/admin/editPost', function(req ,res, next){
 router.get('/admin/users', function(req ,res, next){
 	res.render('users', { title: 'Fhtagn | admin' });
 });
+/* GET newUser */
+router.get('/admin/newUser', function(req ,res, next){
+	res.render('newUser', { title: 'Fhtagn | admin' });
+});
 /* GET editUser */
 router.get('/admin/editUser', function(req ,res, next){
 	res.render('user', { title: 'Fhtagn | editUSer' });
+});
+/* POST newUser */
+router.post('/admin/newUser', function(req, res, next){
+	res.redirect('/admin', { title: 'Fhtagn | admin'});
 });
 /* GET uploadFile */
 router.get('/admin/uploadfile', function(req ,res, next){
@@ -80,10 +98,7 @@ router.get('/admin/themes', function(req ,res, next){
 router.get('/admin/logout', function(req, res, next){
 	res.redirect('/', { title : 'Fhtagn' });
 });
-/* POST savePost */
-router.post('/admin/savePost', function(req ,res, next){
-	res.redirect('/admin', { title: 'Fhtagn | admin' });
-});
+
 /* POST saveUser */
 router.post('/admin/saveUser', function(req ,res, next){
 	res.redirect('/admin', { title: 'Fhtagn | admin' });
