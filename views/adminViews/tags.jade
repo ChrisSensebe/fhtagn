@@ -1,0 +1,14 @@
+extends adminLayout
+
+block content
+	.container
+			.row
+				.col-md-12
+					h2.page-header Admin tags
+					form(method="post" action="/admin/addTag")
+						label(for="delTag") Delete tag
+						input(id="delTag" name="delTag" class="form-control")
+						button.btn.btn-primary.btn-form Add tag
+					form(method="post" action="/Admin/delTag")
+						button.btn.btn-primary.btn-form Delete tag
+

@@ -2,6 +2,12 @@
 	margin-top:15px;
 	margin-right:15px;
 }
+.text-form{
+  min-height: 300px;
+}
+.text-footer{
+  padding: 30px;
+}
 
 /* Sticky footer */
 

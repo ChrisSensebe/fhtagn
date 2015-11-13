@@ -5,11 +5,11 @@ block content
 			.row
 				.col-md-12
 					h2.page-header  Admin post
-					form(method="post" action="admin/savePost")
+					form(method="post" action="/admin/savePost")
 						label(for="tile") Title
 						input(id="title" name="title" class="form-control")
 						label(for="post") Post
-						textarea(id="post" name="post" class="form-control")
+						textarea(id="post" name="post" class="form-control text-form")
 						label(for="tags") tags
 						select(id="tags" name="tags" class="form-control")
 							option(value="tag1") tag1
@@ -17,4 +17,4 @@ block content
 							option(value="tag3") tag3
 						label(for="newTag") new tag
 						input(id="newTag" name="newTag" class="form-control")
-						button.btn.btn-primary Save
+						button.btn.btn-primary.btn-form Save

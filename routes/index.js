@@ -52,24 +52,36 @@ router.post('/admin/login', function(req, res, next){
 
 // protected routes
 
-/* adminHome route */
+/* admin home route */
 router.get('/admin', function(req ,res, next){
 	res.render('adminViews/adminHome', { title: 'Fhtagn | admin' });
 });
 
-/* posts  routes */
-router.get('admin/newPost', function(req, res, next){
+/* admin posts routes */
+router.get('/admin/newPost', function(req, res, next){
 	res.render('adminViews/editPost', { title : 'Fhtagn | admin' });
 });
 router.get('/admin/editPost', function(req ,res, next){
 	res.render('adminViews/editPost', { title: 'Fhtagn | admin' });
 });
 router.post('/admin/savePost', function(req ,res, next){
-	res.redirect('adminViews/admin');
+	res.redirect('/admin');
 });
-/* GET admin/tags */
-/* GET addNewTag */
-/* GET editTag */
+router.post('/admin/delPost', function(req, res, next){
+	res.redirect('/admin');
+});
+
+/* admin tags routes */
+router.get('/admin/tags', function(req, res, next){
+	res.render('adminViews/tags', { title : 'Fhtagn | admin' });
+});
+router.post('/admin/addTag', function(req, res, next){
+	res.redirect('/admin/tags');
+});
+router.post('/admin/delTag', function(req, res, next){
+	res.redirect('/Admin/tags');
+});
+
 /* GET usersPage */
 router.get('/admin/users', function(req ,res, next){
 	res.render('users', { title: 'Fhtagn | admin' });

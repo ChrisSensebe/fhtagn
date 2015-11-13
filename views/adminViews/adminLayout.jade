@@ -22,6 +22,8 @@ html
 							li
 								a(href='/admin/newPost') New post
 							li
+								a(href='/admin/tags') Tags
+							li
 								a(href='/admin/users') Users
 							li
 								a(href='/admin/uploadfile') Upload
@@ -37,10 +39,11 @@ html
 									li
 										a(href='/admin/logout') Logout
 									li
-										a(href='/admin/editUserById') Edit profile
+										a(href='/admin/profile') Edit profile
 			block content
-			footer(class='footer')
-				div(class='container')
-					p(class='text-muted')= title
+			.container
+				.row
+					.col-md-12
+						p(class='text-muted text-footer')= title
 		script(src='//code.jquery.com/jquery-2.1.4.min.js')
 		script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
