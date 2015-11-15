@@ -87,46 +87,8 @@ router.post('/admin/delTag', function(req, res, next){
 	res.redirect('/Admin/tags');
 });
 
-/* GET usersPage */
-router.get('/admin/users', function(req ,res, next){
-	res.render('users', { title: 'Fhtagn | admin' });
-});
-/* GET newUser */
-router.get('/admin/newUser', function(req ,res, next){
-	res.render('newUser', { title: 'Fhtagn | admin' });
-});
-/* GET editUser */
-router.get('/admin/editUser', function(req ,res, next){
-	res.render('user', { title: 'Fhtagn | editUSer' });
-});
-/* POST newUser */
-router.post('/admin/newUser', function(req, res, next){
-	res.redirect('/admin', { title: 'Fhtagn | admin'});
-});
-/* GET uploadFile */
-router.get('/admin/uploadfile', function(req ,res, next){
-	res.render('uploadFile', { title: 'Fhtagn | admin' });
-});
-/* GET themes */
-router.get('/admin/themes', function(req ,res, next){
-	res.render('themes', { title: 'Fhtagn | admin' });
-});
+/* users routes */
 
-/* POST saveUser */
-router.post('/admin/saveUser', function(req ,res, next){
-	res.redirect('/admin', { title: 'Fhtagn | admin' });
-});
-/* POST saveFile */
-router.post('/admin/uploadFile', function(req, res, next){
-	res.redirect('/admin', { title: 'Fhtagn | admin' });
-});
-/* POST saveTheme */
-router.post('/admin/themes', function(req, res, next){
-	res.redirect('/admin', { title: 'Fhtagn | admin' });
-});
-/* POST saveTag */
-router.post('/admin/saveTag', function(req, res, next){
-	res.redirect('/admin', { title  : 'Fhtagn | admin' })
-})
+
 
 module.exports = router;
