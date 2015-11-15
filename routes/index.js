@@ -88,7 +88,6 @@ router.post('/admin/delTag', function(req, res, next){
 });
 
 /* users routes */
-
 router.get('/admin/users', function(req, res, next){
 	res.render('adminViews/users', { title : 'Fhtagn | admin' });
 });
@@ -103,7 +102,6 @@ router.post('/admin/delUser', function(req, res, next){
 });
 
 /* files routes */
-
 router.get('/admin/files', function(req, res, next){
 	res.render('adminViews/files', { title : 'Fhtagn | admin' });
 });
@@ -112,6 +110,14 @@ router.post('/admin/upload', function(req, res, next){
 });
 router.post('/admin/delFile', function(req, res, next){
 	res.redirect('/admin/files');
+});
+
+/* theme routes */
+router.get('/admin/theme', function(req, res, next){
+	res.render('adminViews/theme', { title : 'Fhtagn | admin' });
+});
+router.post('/admin/theme', function(req, res, next){
+	res.redirect('/admin/theme');
 });
 
 module.exports = router;

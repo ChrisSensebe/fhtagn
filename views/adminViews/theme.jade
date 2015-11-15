@@ -1,0 +1,19 @@
+extends adminLayout
+
+block content
+	.container
+			.row
+				.col-md-12
+					h2.page-header Theme
+					form(method="post" action="/admin/theme")
+						label(for="bootstrapTheme") Select bootstrap theme
+						select(class="form-control" id="bootstrapTheme" name="bootstrapTheme" required)
+							option(value="theme1") Theme 1
+							option(value="theme2") Theme 2
+							option(value="theme3") Theme 3
+						label(for="selectImg") Select header Image
+						select(class="form-control" id="headerImg" name="headerImg" required)
+							option(value="img1") Image 1
+							option(value="img2") Image 2
+							option(value="img3") Image 3
+						button.btn.btn-primary.btn-form Select theme
