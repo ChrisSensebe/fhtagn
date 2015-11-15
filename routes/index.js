@@ -102,4 +102,16 @@ router.post('/admin/delUser', function(req, res, next){
 	res.redirect('/admin/users');
 });
 
+/* files routes */
+
+router.get('/admin/files', function(req, res, next){
+	res.render('adminViews/files', { title : 'Fhtagn | admin' });
+});
+router.post('/admin/upload', function(req, res, next){
+	res.redirect('/admin/files');
+});
+router.post('/admin/delFile', function(req, res, next){
+	res.redirect('/admin/files');
+});
+
 module.exports = router;
