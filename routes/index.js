@@ -52,6 +52,11 @@ router.post('/admin/login', function(req, res, next){
 
 // protected routes
 
+/* logout route*/
+router.get('/admin/logout', function(req, res, next){
+	res.redirect('/');
+});
+
 /* admin home route */
 router.get('/admin', function(req ,res, next){
 	res.render('adminViews/adminHome', { title: 'Fhtagn | admin' });
@@ -105,10 +110,6 @@ router.get('/admin/uploadfile', function(req ,res, next){
 /* GET themes */
 router.get('/admin/themes', function(req ,res, next){
 	res.render('themes', { title: 'Fhtagn | admin' });
-});
-/* GET logout */
-router.get('/admin/logout', function(req, res, next){
-	res.redirect('/', { title : 'Fhtagn' });
 });
 
 /* POST saveUser */
