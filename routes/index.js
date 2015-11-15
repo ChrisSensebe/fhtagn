@@ -66,7 +66,7 @@ router.get('/admin', function(req ,res, next){
 router.get('/admin/newPost', function(req, res, next){
 	res.render('adminViews/editPost', { title : 'Fhtagn | admin' });
 });
-router.get('/admin/editPost', function(req ,res, next){
+router.get('/admin/post', function(req ,res, next){
 	res.render('adminViews/editPost', { title: 'Fhtagn | admin' });
 });
 router.post('/admin/savePost', function(req ,res, next){
@@ -84,11 +84,22 @@ router.post('/admin/addTag', function(req, res, next){
 	res.redirect('/admin/tags');
 });
 router.post('/admin/delTag', function(req, res, next){
-	res.redirect('/Admin/tags');
+	res.redirect('/admin/tags');
 });
 
 /* users routes */
 
-
+router.get('/admin/users', function(req, res, next){
+	res.render('adminViews/users', { title : 'Fhtagn | admin' });
+});
+router.get('/admin/user', function(req, res, next){
+	res.render('adminViews/user', { title : 'Fhtagn | admin' });
+});
+router.post('/admin/saveUser', function(req, res, next){
+	res.redirect('/admin/users');
+});
+router.post('/admin/delUser', function(req, res, next){
+	res.redirect('/admin/users');
+});
 
 module.exports = router;

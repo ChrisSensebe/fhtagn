@@ -7,9 +7,9 @@ block content
 					h2.page-header  Admin post
 					form(method="post" action="/admin/savePost")
 						label(for="tile") Title
-						input(id="title" name="title" class="form-control")
+						input(id="title" name="title" class="form-control" required)
 						label(for="post") Post
-						textarea(id="post" name="post" class="form-control text-form")
+						textarea(id="post" name="post" class="form-control text-form" required)
 						label(for="tags") tags
 						select(id="tags" name="tags" class="form-control")
 							option(value="tag1") tag1
