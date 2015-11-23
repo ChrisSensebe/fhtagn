@@ -1,5 +1,6 @@
 var express = require('express');
-var router = express.Router();
+var router  = express.Router();
+var User    = require('../models/user.js')
 
 /*/
 /*  Site routes
@@ -95,7 +96,26 @@ router.get('/admin/user', function(req, res, next){
 	res.render('adminViews/user', { title : 'Fhtagn | admin' });
 });
 router.post('/admin/saveUser', function(req, res, next){
-	res.redirect('/admin/users');
+
+	var username = req.body.username;
+	var email    = req.body.email;
+	var password = req.body.password;
+
+	// create user
+	var newUser = new User({
+		username     : username,
+		email        : email,
+		passwordHash : password,
+		role         : 'peon'
+	});
+
+	// save the user
+	newUser.save(function(err){
+		if(err){
+			return next(err);
+		}
+		res.redirect('/admin/users');
+	});
 });
 router.post('/admin/delUser', function(req, res, next){
 	res.redirect('/admin/users');
