@@ -2,9 +2,9 @@ var express = require('express');
 var router  = express.Router();
 var User    = require('../models/user.js')
 
-/*/
-/*  Site routes
-/*/
+/**
+ * site routes
+ */
 
 /**
  * get homepage
@@ -39,11 +39,13 @@ router.get('/about', function(req, res, next){
 	res.render('siteViews/about', { title : 'Fhtagn' });
 });
 
-/*/
-/*  Admin routes
-/*/
+/**
+ * Admin routes
+ */
 
-// unprotected routes
+/**
+ * unprotected routes
+ */
 
 /* login routes */
 router.get('/admin/login', function(req ,res, next){
@@ -53,7 +55,9 @@ router.post('/admin/login', function(req, res, next){
 	res.redirect('/admin');
 });
 
-// protected routes
+/**
+ * protected routes
+ */
 
 /* logout route*/
 router.get('/admin/logout', function(req, res, next){
