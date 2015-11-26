@@ -11,8 +11,9 @@ var userSchema = mongoose.Schema({
 
 userSchema.set('autoIndex', false);
 
-// pre save function, salt & has user password
-
+/**
+ * pre save function: salt & hash user password
+ */
 userSchema.pre('save', function(next){
 	var user = this;
 	if(!user.isModified('passwordHash')){
@@ -32,11 +33,12 @@ userSchema.pre('save', function(next){
 	});
 });
 
-// check if valid password
+/**
+ * check if valid password
+ * @param password submited by user
+ */
 userSchema.methods.isValidPassword = function(password){
-	return bcrypt.compare(password, function(err, res){
-
-	});
+	return bcrypt.compare(password, function(err, res){});
 }
 
 module.exports = mongoose.model('User', userSchema);
