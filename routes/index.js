@@ -6,7 +6,9 @@ var User    = require('../models/user.js')
 /*  Site routes
 /*/
 
-/* home route */
+/**
+ * get homepage
+ */
 router.get('/', function(req, res, next) {
   res.render('siteViews/index', { title : 'Fhtagn' });
 });

@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
 userSchema.set('autoIndex', false);
 
 // pre save function, salt & has user password
-/**
+
 userSchema.pre('save', function(next){
 	var user = this;
 	if(!user.isModified('passwordHash')){
@@ -31,7 +31,6 @@ userSchema.pre('save', function(next){
 		});
 	});
 });
-**/
 
 // check if valid password
 userSchema.methods.isValidPassword = function(password){
