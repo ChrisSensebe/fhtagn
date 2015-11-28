@@ -38,7 +38,7 @@ module.exports = function(passport){
                 if(err){
                     return next(err);
                 } else if(user){
-                    return done(null, false, req.flash('signupMessage', 'That user is already in use'));
+                    return done(null, false, req.flash('signupMessage', 'That email is already in use'));
                 } else {
                     var newUser = new user();
                     newUser.passwordHash = password;
@@ -47,7 +47,7 @@ module.exports = function(passport){
                         if(err){
                             return next(err);
                         }
-                        return done(null, newUser);
+                        return done(null, newUser, req.flash('SignupMessage', 'Welcome ' + newUser.username));
                     })
                 }
             })
