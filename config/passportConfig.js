@@ -48,12 +48,31 @@ module.exports = function(passport){
                             return next(err);
                         }
                         return done(null, newUser, req.flash('SignupMessage', 'Welcome ' + newUser.username));
-                    })
+                    });
                 }
-            })
+            });
+        });
+    }));
 
-        })
+    /**
+     * local login
+     */
+    passport.use('local-login', new LocalStrategy({
+        usernameField     : 'username',
+        passwordField     : 'password',
+        passReqToCallback : true
+    }, function(req, email, password, next){
 
+        user.findOne({'email' : email}, function(err, user){
+            if(err){
+                return next(err);
+            } else if(!user){
+                return next(null, false, req.flash('loginMessage', 'User not found'));
+            } else if(!user.isValidPassword(password)){
+                return next(null, false, req.flash('loginMessage', 'Invalid password'));
+            }
+            return(null, user);
+        });
     }));
 }
 
