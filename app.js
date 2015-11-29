@@ -7,6 +7,7 @@ var bodyParser   = require('body-parser');
 var routes       = require('./routes/index');
 var mongoose     = require('mongoose');
 var passport     = require('passport');
+var session      = require('express-session')
 var flash        = require('connect-flash');
 var config       = require('./config/appConfig.js');
 
@@ -28,8 +29,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret : config.sessionSecret}));
-app.use(passport.initialise());
+app.use(session({
+    secret : config.sessionSecret,
+    resave : false,
+    saveUninitialized : false
+}));
+app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 

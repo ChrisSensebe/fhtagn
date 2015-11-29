@@ -1,6 +1,7 @@
-var express = require('express');
-var router  = express.Router();
-var User    = require('../models/user.js')
+var express  = require('express');
+var router   = express.Router();
+var User     = require('../models/user.js');
+var passport = require('passport');
 
 /**
  * site routes
@@ -51,9 +52,11 @@ router.get('/about', function(req, res, next){
 router.get('/admin/login', function(req ,res, next){
 	res.render('adminViews/login', { title: 'Fhtagn | admin' });
 });
-router.post('/admin/login', function(req, res, next){
-	res.redirect('/admin');
-});
+router.post('/admin/login', passport.authenticate('local-login', {
+    succesRedirect  : '/admin',
+    failureRedirect : 'login',
+    failureFlash    : true
+}));
 
 /**
  * protected routes
@@ -61,6 +64,7 @@ router.post('/admin/login', function(req, res, next){
 
 /* logout route*/
 router.get('/admin/logout', function(req, res, next){
+    req.logout();
 	res.redirect('/');
 });
 
