@@ -13,18 +13,18 @@ var config       = require('./config/appConfig.js');
 
 var app          = express();
 
-/**
- * database connection
- */
+// database connection
 mongoose.connect(config.databaseUrl);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+require('./config/passportConfig.js')(passport);
+
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger(config.environment));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

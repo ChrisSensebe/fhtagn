@@ -29,7 +29,7 @@ module.exports = function(passport){
         usernameField     : 'username',
         passwordField     : 'password',
         passReqToCallback : true
-    }, function(req, email, password, done){
+    }, function(req, username, password, done){
 
         user.findOne({'email' : email}, function(err, user){
             if(err){
