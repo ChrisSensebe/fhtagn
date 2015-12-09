@@ -7,7 +7,7 @@ var bodyParser   = require('body-parser');
 var routes       = require('./routes/index');
 var mongoose     = require('mongoose');
 var passport     = require('passport');
-var session      = require('express-session')
+var session      = require('express-session');
 var flash        = require('connect-flash');
 var config       = require('./config/appConfig.js');
 
@@ -20,21 +20,21 @@ mongoose.connect(config.databaseUrl);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-require('./config/passportConfig.js')(passport);
-
 // uncomment after placing your favicon in /public
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger(config.environment));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
     secret : config.sessionSecret,
-    resave : false,
-    saveUninitialized : false
+    resave : true,
+    saveUninitialized : true
 }));
 app.use(passport.initialize());
+// pass passport for configuration
+require('./config/passportConfig.js')(passport);
 app.use(passport.session());
 app.use(flash());
 

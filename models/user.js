@@ -38,7 +38,7 @@ userSchema.pre('save', function(next){
  * @param password submited by user
  */
 userSchema.methods.isValidPassword = function(password){
-	return bcrypt.compare(password, function(err, res){});
-}
+    return bcrypt.compareSync(password, this.passwordHash);
+};
 
 module.exports = mongoose.model('User', userSchema);

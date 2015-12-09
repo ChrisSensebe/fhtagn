@@ -6,8 +6,8 @@ block content
 				.col-md-12
 					h2.page-header Login
 					form(method="post" action="/admin/login")
-						label(for="login") Login
-						input(class="form-control" id="login" required)
+						label(for="username") username
+						input(class="form-control" id="username" name="username" required)
 						label(for="password") Password
-						input(class="form-control" id="password" type="password" required)
+						input(class="form-control" id="password" name="password" type="password" required)
 						button.btn.btn-primary.btn-form Login

@@ -31,7 +31,7 @@ module.exports = function(passport){
         passReqToCallback : true
     }, function(req, username, password, done){
 
-        user.findOne({'email' : email}, function(err, user){
+        User.findOne({'username' : username}, function(err, user){
             if(err){
                 return done(err);
             } else if(!user){
@@ -39,7 +39,7 @@ module.exports = function(passport){
             } else if(!user.isValidPassword(password)){
                 return done(null, false, req.flash('loginMessage', 'Invalid password'));
             }
-            return(null, user);
+            return done(null, user);
         });
     }));
 }
