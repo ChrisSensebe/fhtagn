@@ -53,7 +53,7 @@ router.get('/admin/login', function(req ,res){
 	res.render('adminViews/login', { title: 'Fhtagn | admin' });
 });
 router.post('/admin/login', passport.authenticate('local-login', {
-    succesRedirect  : '/admin',
+    successRedirect  : '/admin',
     failureRedirect : '/admin/login',
     failureFlash    : true
 }));
