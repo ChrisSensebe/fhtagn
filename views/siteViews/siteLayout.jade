@@ -25,9 +25,10 @@ html
                                 a(href="/archives") Archives
                             li
                                 a(href="/about") About
-                        ul(class="nav navbar-nav navbar-right")
-                            li
-                                a(href="/admin") isAuth
+                        if isAuthenticated
+                            ul(class="nav navbar-nav navbar-right")
+                                li
+                                    a(href="/admin") Admin
             block content
             .container
                 .row
