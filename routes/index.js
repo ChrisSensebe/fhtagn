@@ -2,6 +2,7 @@ var express  = require('express');
 var router   = express.Router();
 var User     = require('../models/user.js');
 var passport = require('passport');
+var isLogged = require('../middlewares/isLogged.js');
 
 /**
  * site routes
@@ -63,49 +64,49 @@ router.post('/admin/login', passport.authenticate('local-login', {
  */
 
 /* logout route*/
-router.get('/admin/logout', function(req, res){
+router.get('/admin/logout', isLogged, function(req, res){
     req.logout();
 	res.redirect('/');
 });
 
 /* admin home route */
-router.get('/admin', function(req ,res){
+router.get('/admin', isLogged, function(req ,res){
 	res.render('adminViews/adminHome', { title: 'Fhtagn | admin' });
 });
 
 /* admin posts routes */
-router.get('/admin/newPost', function(req, res){
+router.get('/admin/newPost', isLogged, function(req, res){
 	res.render('adminViews/editPost', { title : 'Fhtagn | admin' });
 });
-router.get('/admin/post', function(req ,res){
+router.get('/admin/post', isLogged, function(req ,res){
 	res.render('adminViews/editPost', { title: 'Fhtagn | admin' });
 });
-router.post('/admin/savePost', function(req ,res){
+router.post('/admin/savePost', isLogged, function(req ,res){
 	res.redirect('/admin');
 });
-router.post('/admin/delPost', function(req, res){
+router.post('/admin/delPost', isLogged, function(req, res){
 	res.redirect('/admin');
 });
 
 /* admin tags routes */
-router.get('/admin/tags', function(req, res){
+router.get('/admin/tags', isLogged, function(req, res){
 	res.render('adminViews/tags', { title : 'Fhtagn | admin' });
 });
-router.post('/admin/addTag', function(req, res){
+router.post('/admin/addTag', isLogged, function(req, res){
 	res.redirect('/admin/tags');
 });
-router.post('/admin/delTag', function(req, res){
+router.post('/admin/delTag', isLogged, function(req, res){
 	res.redirect('/admin/tags');
 });
 
 /* users routes */
-router.get('/admin/users', function(req, res){
+router.get('/admin/users', isLogged, function(req, res){
 	res.render('adminViews/users', { title : 'Fhtagn | admin' });
 });
-router.get('/admin/user', function(req, res){
+router.get('/admin/user', isLogged, function(req, res){
 	res.render('adminViews/user', { title : 'Fhtagn | admin' });
 });
-router.post('/admin/saveUser', function(req, res, next){
+router.post('/admin/saveUser', isLogged, function(req, res, next){
 
 	var username = req.body.username;
 	var email    = req.body.email;
@@ -127,26 +128,26 @@ router.post('/admin/saveUser', function(req, res, next){
 		res.redirect('/admin/users');
 	});
 });
-router.post('/admin/delUser', function(req, res){
+router.post('/admin/delUser', isLogged, function(req, res){
 	res.redirect('/admin/users');
 });
 
 /* files routes */
-router.get('/admin/files', function(req, res){
+router.get('/admin/files', isLogged, function(req, res){
 	res.render('adminViews/files', { title : 'Fhtagn | admin' });
 });
-router.post('/admin/upload', function(req, res){
+router.post('/admin/upload', isLogged, function(req, res){
 	res.redirect('/admin/files');
 });
-router.post('/admin/delFile', function(req, res){
+router.post('/admin/delFile', isLogged, function(req, res){
 	res.redirect('/admin/files');
 });
 
 /* theme routes */
-router.get('/admin/theme', function(req, res){
+router.get('/admin/theme', isLogged, function(req, res){
 	res.render('adminViews/theme', { title : 'Fhtagn | admin' });
 });
-router.post('/admin/theme', function(req, res){
+router.post('/admin/theme', isLogged, function(req, res){
 	res.redirect('/admin/theme');
 });
 
