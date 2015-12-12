@@ -1,34 +1,37 @@
 doctype html
 html
-	head
-		title= title
-		link(rel="stylesheet", href="/stylesheets/style.css")
-		link(rel="stylesheet", href="//bootswatch.com/slate/bootstrap.min.css")
-		link(rel="icon" href="public/favicon.ico")
-		body
-			nav(class="navbar navbar-default navbar-fixed")
-				div(class="container")
-					div(class="navbar-header")
-						button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
-							span(class="sr-only") Toggle navigation
-							span(class="icon-bar")
-							span(class="icon-bar")
-							span(class="icon-bar")
-						a(class="navbar-brand" href="/")= title
-					div(class="collapse navbar-collapse")
-						ul(class="nav navbar-nav")
-							li
-								a(href="/") Accueil
-							li
-								a(href="/tags") Tags
-							li
-								a(href="/archives") Archives
-							li
-								a(href="/about") About
-			block content
-			.container
-				.row
-					.col-md-12
-						p(class="text-muted text-footer")= title
-		script(src="//code.jquery.com/jquery-2.1.4.min.js")
-		script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+    head
+        title= title
+        link(rel="stylesheet", href="/stylesheets/style.css")
+        link(rel="stylesheet", href="//bootswatch.com/slate/bootstrap.min.css")
+        link(rel="icon" href="public/favicon.ico")
+        body
+            nav(class="navbar navbar-default navbar-fixed")
+                div(class="container")
+                    div(class="navbar-header")
+                        button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
+                            span(class="sr-only") Toggle navigation
+                            span(class="icon-bar")
+                            span(class="icon-bar")
+                            span(class="icon-bar")
+                        a(class="navbar-brand" href="/")= title
+                    div(class="collapse navbar-collapse")
+                        ul(class="nav navbar-nav")
+                            li
+                                a(href="/") Accueil
+                            li
+                                a(href="/tags") Tags
+                            li
+                                a(href="/archives") Archives
+                            li
+                                a(href="/about") About
+                        ul(class="nav navbar-nav navbar-right")
+                            li
+                                a(href="/admin") isAuth
+            block content
+            .container
+                .row
+                    .col-md-12
+                        p(class="text-muted text-footer")= title
+        script(src="//code.jquery.com/jquery-2.1.4.min.js")
+        script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")

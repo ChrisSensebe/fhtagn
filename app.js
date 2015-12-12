@@ -1,15 +1,16 @@
-var express      = require('express');
-var path         = require('path');
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var routes       = require('./routes/index');
-var mongoose     = require('mongoose');
-var passport     = require('passport');
-var session      = require('express-session');
-var flash        = require('connect-flash');
-var config       = require('./config/appConfig.js');
+var express              = require('express');
+var path                 = require('path');
+var favicon              = require('serve-favicon');
+var logger               = require('morgan');
+var cookieParser         = require('cookie-parser');
+var bodyParser           = require('body-parser');
+var routes               = require('./routes/index');
+var mongoose             = require('mongoose');
+var passport             = require('passport');
+var session              = require('express-session');
+var flash                = require('connect-flash');
+var config               = require('./config/appConfig.js');
+var attachAuthentication = require('./middlewares/attachAuthentication.js');
 
 var app          = express();
 
@@ -37,6 +38,7 @@ app.use(passport.initialize());
 require('./config/passportConfig.js')(passport);
 app.use(passport.session());
 app.use(flash());
+app.use(attachAuthentication);
 
 app.use('/', routes);
 
