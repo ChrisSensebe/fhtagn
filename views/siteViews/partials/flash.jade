@@ -1,21 +1,26 @@
-//
-   Created by csensebe on 13/12/2015.
+// Created by csensebe on 13/12/2015.
 .container
-    .row
-        .col-md-12
-            p.alert.alert-default default
-    .row
-        .col-md-12
-            p.alert.alert-primary primary
-    .row
-        .col-md-12
-            p.alert.alert-sucess succes
-    .row
-        .col-md-12
-            p.alert.alert-info info
-    .row
-        .col-md-12
-            p.alert.alert-warning warning
-    .row
-        .col-md-12
-            p.alert.alert-danger danger
+    if (flash && flash.default && flash.default.length > 0)
+        .row
+            .col-md-12
+                p.alert.alert-default default
+    if (flash && flash.primary && flash.primary.length > 0)
+        .row
+            .col-md-12
+                p.alert.alert-primary primary
+    if (flash && flash.sucess && flash.sucess.length > 0)
+        .row
+            .col-md-12
+                p.alert.alert-sucess succes
+    if (flash && flash.info && flash.info.length > 0)
+        .row
+            .col-md-12
+                p.alert.alert-info info
+    if (flash && flash.warning && flash.warning.length > 0)
+        .row
+            .col-md-12
+                p.alert.alert-warning warning
+    if (flash && flash.danger && flash.danger.length > 0)
+        .row
+            .col-md-12
+                p.alert.alert-danger danger
