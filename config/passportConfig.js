@@ -35,9 +35,9 @@ module.exports = function(passport){
             if(err){
                 return done(err);
             } else if(!user){
-                return done(null, false, req.flash('error', 'User not found'));
+                return done(null, false, req.flash('danger', 'User not found'));
             } else if(!user.isValidPassword(password)){
-                return done(null, false, req.flash('error', 'Invalid password'));
+                return done(null, false, req.flash('danger', 'Invalid password'));
             }
             return done(null, user);
         });

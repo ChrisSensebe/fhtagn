@@ -11,8 +11,9 @@ var session              = require('express-session');
 var flash                = require('connect-flash');
 var config               = require('./config/appConfig.js');
 var attachAuthentication = require('./middlewares/attachAuthentication.js');
+var setFlash             = require('./middlewares/setFlash');
 
-var app          = express();
+var app = express();
 
 // database connection
 mongoose.connect(config.databaseUrl);
@@ -38,6 +39,7 @@ app.use(passport.initialize());
 require('./config/passportConfig.js')(passport);
 app.use(passport.session());
 app.use(flash());
+app.use(setFlash);
 app.use(attachAuthentication);
 
 app.use('/', routes);

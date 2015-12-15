@@ -12,7 +12,7 @@ var isLogged = require('../middlewares/isLogged.js');
  * get homepage
  */
 router.get('/', function(req, res) {
-  res.render('siteViews/index', { title : 'Fhtagn' });
+    res.render('siteViews/index', { title : 'Fhtagn' });
 });
 
 /* posts routes */
@@ -65,6 +65,7 @@ router.post('/admin/login', passport.authenticate('local-login', {
 
 /* logout route*/
 router.get('/admin/logout', isLogged, function(req, res){
+    req.flash('default', 'bye');
     req.logout();
 	res.redirect('/');
 });
