@@ -1,6 +1,7 @@
 var express  = require('express');
 var router   = express.Router();
 var User     = require('../models/user.js');
+var Post     = require('../models/post.js');
 var passport = require('passport');
 var isLogged = require('../middlewares/isLogged.js');
 
