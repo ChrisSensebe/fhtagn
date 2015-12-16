@@ -5,7 +5,7 @@ module.exports = function(req, res, next){
     res.locals.flash = {
         default : req.flash('default'),
         primary : req.flash('primary'),
-        success : req.flash('succes'),
+        success : req.flash('success'),
         info    : req.flash('info'),
         warning : req.flash('warning'),
         danger  : req.flash('danger')

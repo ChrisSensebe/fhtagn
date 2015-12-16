@@ -4,13 +4,25 @@
         .col-md-12
     if (flash && flash.default && flash.default.length > 0)
         p.alert.alert-default #{flash.default}
+            button(id="hideFlash" class="btn btn-xs btn-default pull-right")
+                span(class="glyphicon glyphicon-remove")
     if (flash && flash.primary && flash.primary.length > 0)
         p.alert.alert-primary #{flash.primary}
+            button(id="hideFlash" class="btn btn-xs btn-primary pull-right")
+                span(class="glyphicon glyphicon-remove")
     if (flash && flash.success && flash.success.length > 0)
         p.alert.alert-success #{flash.success}
+            button(id="hideFlash" class="btn btn-xs btn-success pull-right")
+                span(class="glyphicon glyphicon-remove")
     if (flash && flash.info && flash.info.length > 0)
         p.alert.alert-info #{flash.info}
+            button(id="hideFlash" class="btn btn-xs btn-info pull-right")
+                span(class="glyphicon glyphicon-remove")
     if (flash && flash.warning && flash.warning.length > 0)
         p.alert.alert-warning #{flash.warning}
+            button(id="hideFlash" class="btn btn-xs btn-warning pull-right")
+                span(class="glyphicon glyphicon-remove")
     if (flash && flash.danger && flash.danger.length > 0)
         p.alert.alert-danger #{flash.danger}
+            button(id="hideFlash" class="btn btn-xs btn-danger pull-right")
+                span(class="glyphicon glyphicon-remove")

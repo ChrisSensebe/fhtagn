@@ -39,7 +39,7 @@ module.exports = function(passport){
             } else if(!user.isValidPassword(password)){
                 return done(null, false, req.flash('danger', 'Invalid password'));
             }
-            return done(null, user);
+            return done(null, user, req.flash('success', 'Welcome back'));
         });
     }));
 }
