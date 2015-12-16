@@ -78,7 +78,12 @@ router.get('/admin/logout', isLogged, function(req, res){
 
 /* admin home route */
 router.get('/admin', isLogged, function(req ,res){
-	res.render('adminViews/adminHome', { title: 'Fhtagn | admin' });
+    Post.find().sort('-created').exec(function(err, docs){
+        if(err){
+            return next(err);
+        }
+        res.render('adminViews/adminHome', { posts : docs, title : 'Fhtagn | admin' });
+    });
 });
 
 /* admin posts routes */
