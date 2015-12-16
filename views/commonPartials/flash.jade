@@ -1,28 +1,43 @@
 // Created by csensebe on 13/12/2015.
-.container
-    .row
-        .col-md-12
-    if (flash && flash.default && flash.default.length > 0)
-        p.alert.alert-default #{flash.default}
-            button.btn.btn-xs.btn-default.pull-right.hide-flash
-                span.glyphicon.glyphicon-remove
-    if (flash && flash.primary && flash.primary.length > 0)
-        p.alert.alert-primary #{flash.primary}
-            button.btn.btn-xs.btn-primary.pull-right.hide-flash
-                span.glyphicon.glyphicon-remove
-    if (flash && flash.success && flash.success.length > 0)
-        p.alert.alert-success #{flash.success}
-            button.btn.btn-xs.btn-success.pull-right.hide-flash
-                span.glyphicon.glyphicon-remove
-    if (flash && flash.info && flash.info.length > 0)
-        p.alert.alert-info #{flash.info}
-            button.btn.btn-xs.btn-info.pull-right.hide-flash
-                span.glyphicon.glyphicon-remove
-    if (flash && flash.warning && flash.warning.length > 0)
-        p.alert.alert-warning #{flash.warning}
-            button.btn.btn-xs.btn-warning.pull-right.hide-flash
-                span.glyphicon.glyphicon-remove
-    if (flash && flash.danger && flash.danger.length > 0)
-        p.alert.alert-danger #{flash.danger}
-            button.btn.btn-xs.btn-danger.pull-right.hide-flash
-                span.glyphicon.glyphicon-remove
+if (flash && flash.default && flash.default.length > 0)
+    .container
+        .row
+            .col-md-12
+                p.alert.alert-default #{flash.default}
+                    button.btn.btn-xs.btn-default.pull-right.hide-flash
+                        span.glyphicon.glyphicon-remove
+if (flash && flash.primary && flash.primary.length > 0)
+    .container
+        .row
+            .col-md-12
+                p.alert.alert-primary #{flash.primary}
+                    button.btn.btn-xs.btn-primary.pull-right.hide-flash
+                        span.glyphicon.glyphicon-remove
+if (flash && flash.success && flash.success.length > 0)
+    .container
+        .row
+            .col-md-12
+                p.alert.alert-success #{flash.success}
+                    button.btn.btn-xs.btn-success.pull-right.hide-flash
+                        span.glyphicon.glyphicon-remove
+if (flash && flash.info && flash.info.length > 0)
+    .container
+        .row
+            .col-md-12
+                p.alert.alert-info #{flash.info}
+                    button.btn.btn-xs.btn-info.pull-right.hide-flash
+                        span.glyphicon.glyphicon-remove
+if (flash && flash.warning && flash.warning.length > 0)
+    .container
+        .row
+            .col-md-12
+                p.alert.alert-warning #{flash.warning}
+                    button.btn.btn-xs.btn-warning.pull-right.hide-flash
+                        span.glyphicon.glyphicon-remove
+if (flash && flash.danger && flash.danger.length > 0)
+    .container
+        .row
+            .col-md-12
+                p.alert.alert-danger #{flash.danger}
+                    button.btn.btn-xs.btn-danger.pull-right.hide-flash
+                        span.glyphicon.glyphicon-remove
