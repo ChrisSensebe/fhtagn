@@ -12,8 +12,13 @@ var isLogged = require('../middlewares/isLogged.js');
 /**
  * get homepage
  */
-router.get('/', function(req, res) {
-    res.render('siteViews/index', { title : 'Fhtagn' });
+router.get('/', function(req, res, next) {
+    Post.find().sort('-created').exec(function(err, docs){
+        if(err){
+            return next(err);
+        }
+        res.render('siteViews/index', { posts : docs, title : 'Fhtagn' });
+    });
 });
 
 /* posts routes */
