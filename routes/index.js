@@ -65,7 +65,7 @@ router.post('/admin/login', passport.authenticate('local-login', {
 
 /* logout route*/
 router.get('/admin/logout', isLogged, function(req, res){
-    req.flash('default', 'bye');
+    req.flash('success', 'bye');
     req.logout();
 	res.redirect('/');
 });
