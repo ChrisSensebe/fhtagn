@@ -2,16 +2,18 @@ extends adminLayout
 
 block content
     .container
+        .row
+            .col-md-12
+                h2.page-header Admin home
         each post in posts
             .row
                 .col-md-12
-                    h2.page-header Admin home
-                        h3= post.title
-                        p= "created: " + post.created
-                        p= "updated: " + post.updated
-                        p= "by : " + post.author
-                        p
-                            a(href="admin/post/#{post.id}") Edit post
+                    h3= post.title
+                    p= "created: " + post.created
+                    p= "updated: " + post.updated
+                    p= "by : " + post.author
+                    p
+                        a(href="admin/post/#{post.id}") Edit post
         .row
             .col-md-12
                 p
