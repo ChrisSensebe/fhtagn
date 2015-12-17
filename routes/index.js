@@ -120,7 +120,7 @@ router.post('/admin/saveNewPost', isLogged, function(req, res, next){
     req.flash('success', 'Post successfully saved.');
     res.redirect('/admin');
 })
-router.get('/admin/post', isLogged, function(req ,res){
+router.get('/admin/post/:id', isLogged, function(req ,res){
 	res.render('adminViews/editPost', { title: 'Fhtagn | admin' });
 });
 router.post('/admin/savePost', isLogged, function(req ,res){
