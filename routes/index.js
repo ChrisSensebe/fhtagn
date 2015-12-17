@@ -131,8 +131,33 @@ router.get('/admin/post/:id', isLogged, function(req ,res, next){
         res.render('adminViews/editPost', {title : 'Fhtagn | admin', post : doc});
     });
 });
-router.post('/admin/savePost', isLogged, function(req ,res){
-	res.redirect('/admin');
+router.post('/admin/savePost', isLogged, function(req ,res, next){
+
+    var id      = req.body.id;
+    var title   = req.body.title;
+    var post    = req.body.post;
+    var tags    = req.body.tags.split(',');
+
+    Post.findOne({_id : id}, function(err, doc){
+
+        if(err){
+            return next(err);
+        }
+
+        doc.title   = title;
+        doc.post    = post;
+        doc.tags    = tags;
+        doc.updated = Date.now();
+
+        doc.save(function(err){
+
+            if(err){
+                return next(err);
+            }
+            req.flash('success', 'Post successfully updated');
+            res.redirect('/admin');
+        })
+    })
 });
 router.post('/admin/delPost', isLogged, function(req, res){
 	res.redirect('/admin');

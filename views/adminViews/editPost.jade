@@ -6,10 +6,11 @@ block content
             .col-md-12
                 h2.page-header  Edit post
                 form(method="post" action="/admin/savePost")
+                    input(id="id" name="id" value="#{post._id}" type="hidden")
                     label(for="title") Title
-                    input(id="title" name="title" class="form-control" placeholder="#{post.title}" required)
+                    input(id="title" name="title" class="form-control" value="#{post.title}" required)
                     label(for="post") Post
-                    textarea(id="post" name="post" class="form-control text-form" placeholder="#{post.post}" required)
+                    textarea(id="post" name="post" class="form-control text-form" required)= post.post
                     label(for="tags") tags
-                    input(id="tags" name="tags" class="form-control" placeholder="#{post.tags}")
+                    input(id="tags" name="tags" class="form-control" value="#{post.tags}")
                     button.btn.btn-primary.btn-form Save
