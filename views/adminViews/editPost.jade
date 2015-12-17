@@ -1,15 +1,15 @@
 extends adminLayout
 
 block content
-	.container
-			.row
-				.col-md-12
-					h2.page-header  Admin post
-					form(method="post" action="/admin/savePost")
-						label(for="title") Title
-						input(id="title" name="title" class="form-control" required)
-						label(for="post") Post
-						textarea(id="post" name="post" class="form-control text-form" required)
-						label(for="tags") tags
-						input(id="tags" name="tags" class="form-control")
-						button.btn.btn-primary.btn-form Save
+    .container
+        .row
+            .col-md-12
+                h2.page-header  Edit post
+                form(method="post" action="/admin/savePost")
+                    label(for="title") Title
+                    input(id="title" name="title" class="form-control" placeholder="#{post.title}" required)
+                    label(for="post") Post
+                    textarea(id="post" name="post" class="form-control text-form" placeholder="#{post.post}" required)
+                    label(for="tags") tags
+                    input(id="tags" name="tags" class="form-control" placeholder="#{post.tags}")
+                    button.btn.btn-primary.btn-form Save

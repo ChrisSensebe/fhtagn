@@ -100,7 +100,7 @@ router.post('/admin/saveNewPost', isLogged, function(req, res, next){
     var title  = req.body.title;
     var post   = req.body.post;
     var author = req.user.username;
-    var tags   = req.body.tags.split(' ');
+    var tags   = req.body.tags.split(',');
 
     var newPost = Post({
         title   : title,
@@ -119,9 +119,17 @@ router.post('/admin/saveNewPost', isLogged, function(req, res, next){
 
     req.flash('success', 'Post successfully saved.');
     res.redirect('/admin');
-})
-router.get('/admin/post/:id', isLogged, function(req ,res){
-	res.render('adminViews/editPost', { title: 'Fhtagn | admin' });
+});
+router.get('/admin/post/:id', isLogged, function(req ,res, next){
+
+    var id = req.params.id;
+
+    Post.findOne({_id : id}, function(err, doc){
+        if(err){
+            return next(err);
+        }
+        res.render('adminViews/editPost', {title : 'Fhtagn | admin', post : doc});
+    });
 });
 router.post('/admin/savePost', isLogged, function(req ,res){
 	res.redirect('/admin');
