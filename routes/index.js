@@ -25,9 +25,6 @@ router.get('/', function(req, res, next) {
 router.get('/post', function(req, res){
 	res.render('siteViews/post', { title : 'Fhtagn' });
 });
-router.get('/post',function(req, res){
-	res.render('siteViews/post', { title : 'Fhtagn' });
-});
 
 /* tags routes */
 router.get('/tags', function(req ,res){
@@ -88,8 +85,33 @@ router.get('/admin', isLogged, function(req ,res){
 
 /* admin posts routes */
 router.get('/admin/newPost', isLogged, function(req, res){
-	res.render('adminViews/editPost', { title : 'Fhtagn | admin' });
+	res.render('adminViews/createNewPost', { title : 'Fhtagn | admin' });
 });
+router.post('/admin/saveNewPost', isLogged, function(req, res, next){
+
+    var title  = req.body.title;
+    var post   = req.body.post;
+    var author = req.user.username;
+    var tags   = req.body.tags.split(' ');
+
+    var newPost = Post({
+        title   : title,
+        post    : post,
+        author  : author,
+        tags    : tags,
+        created : Date.now(),
+        updated : Date.now()
+    });
+
+    newPost.save(function(err){
+        if(err){
+            return next(err);
+        }
+    });
+
+    req.flash('success', 'Post successfully saved.');
+    res.redirect('/admin');
+})
 router.get('/admin/post', isLogged, function(req ,res){
 	res.render('adminViews/editPost', { title: 'Fhtagn | admin' });
 });
@@ -98,17 +120,6 @@ router.post('/admin/savePost', isLogged, function(req ,res){
 });
 router.post('/admin/delPost', isLogged, function(req, res){
 	res.redirect('/admin');
-});
-
-/* admin tags routes */
-router.get('/admin/tags', isLogged, function(req, res){
-	res.render('adminViews/tags', { title : 'Fhtagn | admin' });
-});
-router.post('/admin/addTag', isLogged, function(req, res){
-	res.redirect('/admin/tags');
-});
-router.post('/admin/delTag', isLogged, function(req, res){
-	res.redirect('/admin/tags');
 });
 
 /* users routes */

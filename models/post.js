@@ -7,8 +7,9 @@ var postSchema = mongoose.Schema({
     title   : String,
     body    : String,
     author  : String,
-    created : {type : Date, default : Date.now},
-    updated : {type : Date, default : Date.now}
+    tags    : [String],
+    created : Date,
+    updated : Date
 });
 
 postSchema.set('autoIndex', false);
