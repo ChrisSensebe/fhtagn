@@ -22,8 +22,16 @@ router.get('/', function(req, res, next) {
 });
 
 /* posts routes */
-router.get('/post', function(req, res){
-	res.render('siteViews/post', { title : 'Fhtagn' });
+router.get('/post/:id', function(req, res, next){
+
+    var id = req.params.id;
+
+    Post.findOne({_id : id}, function(err, doc){
+        if(err){
+            return next(err);
+        }
+        res.render('siteViews/post', { title : 'Fhtagn', post : doc});
+    });
 });
 
 /* tags routes */

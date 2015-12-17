@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 var postSchema = mongoose.Schema({
     title   : String,
-    body    : String,
+    post    : String,
     author  : String,
     tags    : [String],
     created : Date,

@@ -1,8 +1,10 @@
 extends siteLayout
 
 block content
-	.container
-		.row
-			.col-md-12
-				h2.page-header Post page
-				p post content
+    .container
+        .row
+            .col-md-12
+                h2.page-header #{post.title}
+                p created: #{post.created}
+                p by: #{post.author}
+                p #{post.post}
