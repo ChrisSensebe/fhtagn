@@ -4,5 +4,9 @@ block content
 	.container
 		.row
 			.col-md-12
-				h2.page-header Archives page
-				a(href="/post") post
+				h2.page-header Archives
+				- each post in posts
+					h3
+						a(href="/post/#{post._id}")= post.title
+					p= "created : " + post.created
+					p= "by : " + post.author
