@@ -13,7 +13,7 @@ var isLogged = require('../middlewares/isLogged.js');
  * get homepage
  */
 router.get('/', function(req, res, next) {
-    Post.find().sort('-created').exec(function(err, docs){
+    Post.find().sort('-created').limit(10).exec(function(err, docs){
         if(err){
             return next(err);
         }
@@ -44,7 +44,12 @@ router.get('/tag', function(req, res){
 
 /* archives route */
 router.get('/archives', function(req ,res){
-	res.render('siteViews/archives', { title : 'Fhtagn' });
+    Post.find().sort('-created').exec(function(err, docs){
+        if(err){
+            return next(err);
+        }
+        res.render('siteViews/archives', { posts : docs, title : 'Fhtagn' });
+    });
 });
 
 /* about route */
@@ -164,8 +169,13 @@ router.post('/admin/delPost', isLogged, function(req, res){
 });
 
 /* users routes */
-router.get('/admin/users', isLogged, function(req, res){
-	res.render('adminViews/users', { title : 'Fhtagn | admin' });
+router.get('/admin/users', isLogged, function(req, res, next){
+    User.find().exec(function(err, docs){
+        if(err){
+            return next(err);
+        }
+        res.render('adminViews/users', { title : 'Fhtagn | admin' , users : docs});
+    })
 });
 router.get('/admin/user', isLogged, function(req, res){
 	res.render('adminViews/user', { title : 'Fhtagn | admin' });
