@@ -17,12 +17,15 @@ router.get('/', function(req, res, next) {
         if(err){
             return next(err);
         }
-        res.render('siteViews/index', {posts : docs, title : siteConf.siteTitle });
+        res.render('siteViews/index', {
+            title : siteConf.siteTitle,
+            pageTitle : siteConf.pagesTitles.homePage,
+            posts : docs
+        });
     });
 });
 // get post by id
 router.get('/post/:id', function(req, res, next){
-
     // get post id from url
     var id = req.params.id;
     // find post in database, render post page
@@ -30,12 +33,18 @@ router.get('/post/:id', function(req, res, next){
         if(err){
             return next(err);
         }
-        res.render('siteViews/post', {title : siteConf.siteTitle, post : doc});
+        res.render('siteViews/post', {
+            title : siteConf.siteTitle,
+            post : doc
+        });
     });
 });
 // get tags page
 router.get('/tags', function(req ,res){
-	res.render('siteViews/tags', {title : siteConf.siteTitle});
+	res.render('siteViews/tags', {
+        title : siteConf.siteTitle,
+        pageTitle : siteConf.pagesTitles.tagsPage
+    });
 });
 // get archives page
 router.get('/archives', function(req ,res){
@@ -44,13 +53,20 @@ router.get('/archives', function(req ,res){
         if(err){
             return next(err);
         }
-        res.render('siteViews/archives', {posts : docs, title : siteConf.siteTitle});
+        res.render('siteViews/archives', {
+            title : siteConf.siteTitle,
+            pageTitle : siteConf.pagesTitles.archivesPages,
+            posts : docs
+        });
     });
 });
 // get about page
 router.get('/about', function(req, res){
     // render about page
-	res.render('siteViews/about', {title : siteConf.siteTitle});
+	res.render('siteViews/about', {
+        title : siteConf.siteTitle,
+        pageTitle : siteConf.pagesTitles.aboutPage
+    });
 });
 
 /**
@@ -64,7 +80,10 @@ router.get('/about', function(req, res){
 // get login page
 router.get('/admin/login', function(req ,res){
     // render login page
-	res.render('adminViews/login', {title : siteConf.adminTitle});
+	res.render('adminViews/login', {
+        title : siteConf.adminTitle,
+        pageTitle : siteConf.adminPagesTitles.loginPage
+    });
 });
 // post login form
 // use passport for authentication, failure redirect to login, success to admin homepage
@@ -92,13 +111,20 @@ router.get('/admin', isLogged, function(req ,res){
         if(err){
             return next(err);
         }
-        res.render('adminViews/adminHome', {posts : docs, title : siteConf.adminTitle});
+        res.render('adminViews/adminHome', {
+            title : siteConf.adminTitle,
+            pageTitle : siteConf.adminPagesTitles.homePage,
+            posts : docs
+        });
     });
 });
 // get new post page
 router.get('/admin/newPost', isLogged, function(req, res){
     // render create newpost page
-	res.render('adminViews/createNewPost', {title : siteConf.adminTitle});
+	res.render('adminViews/createNewPost', {
+        title : siteConf.adminTitle,
+        pageTitle : siteConf.adminPagesTitles.newPostPage
+    });
 });
 // post save new post form
 router.post('/admin/saveNewPost', isLogged, function(req, res, next){
@@ -130,7 +156,6 @@ router.post('/admin/saveNewPost', isLogged, function(req, res, next){
 });
 // get edit post by id
 router.get('/admin/post/:id', isLogged, function(req ,res, next){
-
     // get post id from form
     var id = req.params.id;
     // find post in database, render edit post page
@@ -138,12 +163,14 @@ router.get('/admin/post/:id', isLogged, function(req ,res, next){
         if(err){
             return next(err);
         }
-        res.render('adminViews/editPost', {title : siteConf.adminTitle, post : doc});
+        res.render('adminViews/editPost', {
+            title : siteConf.adminTitle,
+            post : doc
+        });
     });
 });
 // post save post form
 router.post('/admin/savePost', isLogged, function(req ,res, next){
-
     // get info from form
     var id      = req.body.id;
     var title   = req.body.title;
@@ -170,8 +197,8 @@ router.post('/admin/savePost', isLogged, function(req ,res, next){
             }
             req.flash('success', 'Post successfully updated');
             res.redirect('/admin');
-        })
-    })
+        });
+    });
 });
 // post del post
 router.post('/admin/delPost', isLogged, function(req, res){
@@ -184,13 +211,20 @@ router.get('/admin/users', isLogged, function(req, res, next){
         if(err){
             return next(err);
         }
-        res.render('adminViews/users', {title : siteConf.adminTitle, users : docs});
-    })
+        res.render('adminViews/users', {
+            title : siteConf.adminTitle,
+            pageTitle : siteConf.adminPagesTitles.usersPage,
+            users : docs
+        });
+    });
 });
 // get newUser page
 router.get('/admin/newUser', isLogged, function(req, res){
     // render new user page
-    res.render('adminViews/newUser', {title : siteConf.adminTitle});
+    res.render('adminViews/newUser', {
+        title : siteConf.adminTitle,
+        pageTitle : siteConf.adminPagesTitles.newUserPage
+    });
 });
 // get user page by id
 router.get('/admin/user/:id', isLogged, function(req, res, next){
@@ -201,8 +235,11 @@ router.get('/admin/user/:id', isLogged, function(req, res, next){
         if(err){
             return next(err);
         }
-        res.render('adminViews/user', {title : siteConf.adminTitle, user : doc});
-    })
+        res.render('adminViews/user', {
+            title : siteConf.adminTitle,
+            user : doc
+        });
+    });
 });
 //post save new user
 router.post('/admin/saveNewUser', isLogged, function(req, res){
@@ -227,7 +264,7 @@ router.post('/admin/saveNewUser', isLogged, function(req, res){
             req.flash('success', 'User successfully saved');
             res.redirect('/admin/users');
         }
-    })
+    });
 });
 // post save user form
 router.post('/admin/saveUser', isLogged, function(req, res, next){
@@ -267,7 +304,10 @@ router.post('/admin/delUser', isLogged, function(req, res){
 });
 // get admin upload file file
 router.get('/admin/files', isLogged, function(req, res){
-	res.render('adminViews/files', { title : 'Fhtagn | admin' });
+	res.render('adminViews/files', {
+        title : siteConf.adminTitle,
+        pageTitle : siteConf.adminPagesTitles.filesPage
+    });
 });
 // post save file
 router.post('/admin/upload', isLogged, function(req, res){
@@ -279,7 +319,10 @@ router.post('/admin/delFile', isLogged, function(req, res){
 });
 // get admin themes page
 router.get('/admin/theme', isLogged, function(req, res){
-	res.render('adminViews/theme', { title : siteConf.adminTitle});
+	res.render('adminViews/theme', {
+        title : siteConf.adminTitle,
+        pageTitle : siteConf.adminPagesTitles.themePage
+    });
 });
 // post change theme
 router.post('/admin/theme', isLogged, function(req, res){

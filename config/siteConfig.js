@@ -11,16 +11,20 @@ var siteConfig = {
         aboutPage : 'About'
     },
     adminPagesTitles : {
+        loginPage : 'Login',
         homePage : 'Home',
         newPostPage : 'New post',
         usersPage : 'Users',
+        newUserPage : 'New user',
         filesPage : 'Files',
         themePage :'Theme'
     },
     flashMessages : {
         default : {},
         primary : {},
-        success : {},
+        success : {
+
+        },
         info    : {},
         warning : {},
         danger  : {}
