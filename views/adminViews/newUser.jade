@@ -1,0 +1,21 @@
+extends adminLayout
+
+block content
+    .container
+        .row
+            .col-md-12
+                h2.page-header User
+                form(method="post" action="/admin/saveNewUser")
+                    label(for="username") Username
+                    input(class="form-control" id="username" name="username" required)
+                    label(for="email") Email
+                    input(class="form-control" id="email" name="email" type="email" required)
+                    label(for="password") Password
+                    input(class="form-control" id="password" name="password" type="password" required)
+                    label(for="passwordRepeat") Repeat password
+                    input(class="form-control" id="passwordRepeat" name="passwordRepeat" type="password" required)
+                    label(for="role") Role
+                    select(id="role" name="role" class="form-control" required)
+                        option(value="role1") Role1
+                        option(value="role2") Role2
+                    button.btn.btn-primary.btn-form Save user

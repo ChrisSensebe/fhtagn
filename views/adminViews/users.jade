@@ -10,3 +10,7 @@ block content
                         a(href="/admin/user/#{user._id}")= user.username
                     p= user.email
                     p= user.role
+    .container
+        .row
+            .col-md-12
+                a(href="/admin/newUser") create new user

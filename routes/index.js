@@ -186,9 +186,26 @@ router.get('/admin/users', isLogged, function(req, res, next){
         res.render('adminViews/users', { title : 'Fhtagn | admin' , users : docs});
     })
 });
+// get newUser page
+router.get('/admin/newUser', isLogged, function(req, res){
+    // render new user page
+    res.render('adminViews/newUser', {title : 'Fhtagn | admin'});
+});
 // get user page by id
-router.get('/admin/user/:id', isLogged, function(req, res){
-	res.render('adminViews/user', { title : 'Fhtagn | admin' });
+router.get('/admin/user/:id', isLogged, function(req, res, next){
+    // get user id from url
+    var userId = req.params.id;
+    // find user in database, render edit user page
+    User.findOne({_id : userId}, function(err, doc){
+        if(err){
+            return next(err);
+        }
+        res.render('adminViews/user', { title : 'Fhtagn | admin' , user : doc});
+    })
+});
+//post save new user
+router.post('/admin/saveNewUser', isLogged, function(req, res){
+
 });
 // post save user form
 router.post('/admin/saveUser', isLogged, function(req, res, next){
