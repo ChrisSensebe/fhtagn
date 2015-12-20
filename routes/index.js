@@ -231,7 +231,7 @@ router.post('/admin/saveNewUser', isLogged, function(req, res){
 // post save user form
 router.post('/admin/saveUser', isLogged, function(req, res, next){
     // get user info from form
-    var id       = req.body.id
+    var id       = req.body.id;
 	var username = req.body.username;
     var email    = req.body.email;
     if(req.body.password){
