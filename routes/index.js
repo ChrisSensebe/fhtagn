@@ -18,8 +18,8 @@ router.get('/', function(req, res, next) {
             return next(err);
         }
         res.render('siteViews/index', {
-            title : siteConf.siteTitle,
-            pageTitle : siteConf.pagesTitles.homePage,
+            title : siteConf.siteConfig.homePage.pageTitle,
+            pageTitle : siteConf.siteConfig.homePage.pageTitle,
             posts : docs
         });
     });
@@ -34,7 +34,7 @@ router.get('/post/:id', function(req, res, next){
             return next(err);
         }
         res.render('siteViews/post', {
-            title : siteConf.siteTitle,
+            title : siteConf.siteConfig.siteTitle,
             post : doc
         });
     });
@@ -42,8 +42,8 @@ router.get('/post/:id', function(req, res, next){
 // get tags page
 router.get('/tags', function(req ,res){
 	res.render('siteViews/tags', {
-        title : siteConf.siteTitle,
-        pageTitle : siteConf.pagesTitles.tagsPage
+        title : siteConf.siteConfig.siteTitle,
+        pageTitle : siteConf.siteConfig.tagsPage.pageTitle
     });
 });
 // get archives page
@@ -54,8 +54,8 @@ router.get('/archives', function(req ,res){
             return next(err);
         }
         res.render('siteViews/archives', {
-            title : siteConf.siteTitle,
-            pageTitle : siteConf.pagesTitles.archivesPages,
+            title : siteConf.siteConfig.siteTitle,
+            pageTitle : siteConf.siteConfig.archivesPage.pageTitle,
             posts : docs
         });
     });
@@ -64,8 +64,8 @@ router.get('/archives', function(req ,res){
 router.get('/about', function(req, res){
     // render about page
 	res.render('siteViews/about', {
-        title : siteConf.siteTitle,
-        pageTitle : siteConf.pagesTitles.aboutPage
+        title : siteConf.siteConfig.siteTitle,
+        pageTitle : siteConf.siteConfig.aboutPage.pageTitle
     });
 });
 
@@ -81,8 +81,8 @@ router.get('/about', function(req, res){
 router.get('/admin/login', function(req ,res){
     // render login page
 	res.render('adminViews/login', {
-        title : siteConf.adminTitle,
-        pageTitle : siteConf.adminPagesTitles.loginPage
+        title : siteConf.adminConfig.siteTitle,
+        pageTitle : siteConf.adminConfig.loginPage.pageTitle
     });
 });
 // post login form
@@ -112,8 +112,8 @@ router.get('/admin', isLogged, function(req ,res){
             return next(err);
         }
         res.render('adminViews/adminHome', {
-            title : siteConf.adminTitle,
-            pageTitle : siteConf.adminPagesTitles.homePage,
+            title : siteConf.adminConfig.siteTitle,
+            pageTitle : siteConf.adminConfig.homePage.pageTitle,
             posts : docs
         });
     });
@@ -122,8 +122,8 @@ router.get('/admin', isLogged, function(req ,res){
 router.get('/admin/newPost', isLogged, function(req, res){
     // render create newpost page
 	res.render('adminViews/createNewPost', {
-        title : siteConf.adminTitle,
-        pageTitle : siteConf.adminPagesTitles.newPostPage
+        title : siteConf.adminConfig.siteTitle,
+        pageTitle : siteConf.adminConfig.newPostPage.pageTitle
     });
 });
 // post save new post form
@@ -164,7 +164,7 @@ router.get('/admin/post/:id', isLogged, function(req ,res, next){
             return next(err);
         }
         res.render('adminViews/editPost', {
-            title : siteConf.adminTitle,
+            title : siteConf.adminConfig.siteTitle,
             post : doc
         });
     });
@@ -212,8 +212,8 @@ router.get('/admin/users', isLogged, function(req, res, next){
             return next(err);
         }
         res.render('adminViews/users', {
-            title : siteConf.adminTitle,
-            pageTitle : siteConf.adminPagesTitles.usersPage,
+            title : siteConf.adminConfig.siteTitle,
+            pageTitle : siteConf.adminConfig.usersPage.pageTitle,
             users : docs
         });
     });
@@ -222,8 +222,8 @@ router.get('/admin/users', isLogged, function(req, res, next){
 router.get('/admin/newUser', isLogged, function(req, res){
     // render new user page
     res.render('adminViews/newUser', {
-        title : siteConf.adminTitle,
-        pageTitle : siteConf.adminPagesTitles.newUserPage
+        title : siteConf.adminConfig.siteTitle,
+        pageTitle : siteConf.adminConfig.newUserPage.pageTitle
     });
 });
 // get user page by id
@@ -236,7 +236,7 @@ router.get('/admin/user/:id', isLogged, function(req, res, next){
             return next(err);
         }
         res.render('adminViews/user', {
-            title : siteConf.adminTitle,
+            title : siteConf.adminConfig.siteTitle,
             user : doc
         });
     });
@@ -293,7 +293,7 @@ router.post('/admin/saveUser', isLogged, function(req, res, next){
                 req.flash('danger', 'Error saving user in database');
                 return next(err);
             }
-        })
+        });
         req.flash('success', 'User successfully saved');
         res.redirect('/admin/users');
     });
@@ -305,8 +305,8 @@ router.post('/admin/delUser', isLogged, function(req, res){
 // get admin upload file file
 router.get('/admin/files', isLogged, function(req, res){
 	res.render('adminViews/files', {
-        title : siteConf.adminTitle,
-        pageTitle : siteConf.adminPagesTitles.filesPage
+        title : siteConf.adminConfig.siteTitle,
+        pageTitle : siteConf.adminConfig.filesPage.pageTilte
     });
 });
 // post save file
@@ -320,8 +320,8 @@ router.post('/admin/delFile', isLogged, function(req, res){
 // get admin themes page
 router.get('/admin/theme', isLogged, function(req, res){
 	res.render('adminViews/theme', {
-        title : siteConf.adminTitle,
-        pageTitle : siteConf.adminPagesTitles.themePage
+        title : siteConf.adminConfig.siteTitle,
+        pageTitle : siteConf.adminConfig.themePage.pageTitle
     });
 });
 // post change theme

@@ -4,7 +4,7 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header Users
+                h2.page-header #{pageTitle}
                 - each user in users
                     h3
                         a(href="/admin/user/#{user._id}")= user.username

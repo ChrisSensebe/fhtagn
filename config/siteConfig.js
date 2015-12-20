@@ -2,32 +2,46 @@
  * Created by csensebe on 20/12/2015.
  */
 var siteConfig = {
-    siteTitle  : 'Fhtagn',
-    adminTitle : 'Fhtagn | admin',
-    pagesTitles : {
-        homePage : 'Home',
-        tagsPage : 'Tags',
-        archivesPages : 'Archives',
-        aboutPage : 'About'
-    },
-    adminPagesTitles : {
-        loginPage : 'Login',
-        homePage : 'Home',
-        newPostPage : 'New post',
-        usersPage : 'Users',
-        newUserPage : 'New user',
-        filesPage : 'Files',
-        themePage :'Theme'
-    },
-    flashMessages : {
-        default : {},
-        primary : {},
-        success : {
-
+    siteConfig : {
+        siteTitle : 'Fhtagn',
+        homePage : {
+            pageTitle : 'Home'
         },
-        info    : {},
-        warning : {},
-        danger  : {}
+        tagsPage : {
+            pageTitle : 'Tags'
+        },
+        archivesPage : {
+            pageTitle : 'Archives'
+        },
+        aboutPage : {
+            pageTitle : 'About'
+        }
+    },
+    adminConfig : {
+        siteTitle : 'Fhtagn | admin',
+        homePage : {
+            pageTitle : 'Posts'
+        },
+        newPostPage : {
+            pageTitle : 'New Post'
+        },
+        postPage : {},
+        usersPage : {
+            pageTitle : 'Users'
+        },
+        newUserPage : {
+            pageTitle : 'New user'
+        },
+        userPage : {},
+        filesPage : {
+            pageTilte : 'Files'
+        },
+        themePage : {
+            pageTitle : 'Theme'
+        },
+        loginPage : {
+            pageTitle : 'Login'
+        }
     }
 }
 

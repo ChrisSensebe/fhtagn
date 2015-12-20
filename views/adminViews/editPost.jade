@@ -4,7 +4,7 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header  Edit post
+                h2.page-header  #{post.title}
                 form(method="post" action="/admin/savePost")
                     input(id="id" name="id" value="#{post._id}" type="hidden")
                     label(for="title") Title

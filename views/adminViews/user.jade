@@ -4,7 +4,7 @@ block content
 	.container
 			.row
 				.col-md-12
-					h2.page-header User
+					h2.page-header #{user.username}
 					form(method="post" action="/admin/saveUser")
 						input(id="id" name="id" value="#{user._id}" type="hidden")
 						label(for="username") Username
