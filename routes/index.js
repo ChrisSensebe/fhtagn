@@ -9,10 +9,9 @@ var isLogged = require('../middlewares/isLogged.js');
  * site routes
  */
 
-/**
- * get homepage
- */
+// get homepage
 router.get('/', function(req, res, next) {
+    // find last ten posts in database, render site homepage
     Post.find().sort('-created').limit(10).exec(function(err, docs){
         if(err){
             return next(err);
@@ -20,12 +19,12 @@ router.get('/', function(req, res, next) {
         res.render('siteViews/index', { posts : docs, title : 'Fhtagn' });
     });
 });
-
-/* posts routes */
+// get post by id
 router.get('/post/:id', function(req, res, next){
 
+    // get post id from url
     var id = req.params.id;
-
+    // find post in database, render post page
     Post.findOne({_id : id}, function(err, doc){
         if(err){
             return next(err);
@@ -33,17 +32,13 @@ router.get('/post/:id', function(req, res, next){
         res.render('siteViews/post', { title : 'Fhtagn', post : doc});
     });
 });
-
-/* tags routes */
+// get tags page
 router.get('/tags', function(req ,res){
 	res.render('siteViews/tags', { title : 'Fhtagn' });
 });
-router.get('/tag', function(req, res){
-	res.render('siteViews/tag', { title : 'Fhtagn' });
-});
-
-/* archives route */
+// get archives page
 router.get('/archives', function(req ,res){
+    // find all posts in database, render archives page
     Post.find().sort('-created').exec(function(err, docs){
         if(err){
             return next(err);
@@ -51,9 +46,9 @@ router.get('/archives', function(req ,res){
         res.render('siteViews/archives', { posts : docs, title : 'Fhtagn' });
     });
 });
-
-/* about route */
+// get about page
 router.get('/about', function(req, res){
+    // render about page
 	res.render('siteViews/about', { title : 'Fhtagn' });
 });
 
@@ -65,10 +60,13 @@ router.get('/about', function(req, res){
  * unprotected routes
  */
 
-/* login routes */
+// get login page
 router.get('/admin/login', function(req ,res){
+    // render login page
 	res.render('adminViews/login', { title: 'Fhtagn | admin' });
 });
+// post login form
+// use passport for authentication, failure redirect to login, success to admin homepage
 router.post('/admin/login', passport.authenticate('local-login', {
     successRedirect  : '/admin',
     failureRedirect : '/admin/login',
@@ -76,18 +74,19 @@ router.post('/admin/login', passport.authenticate('local-login', {
 }));
 
 /**
- * protected routes
+ * protected routes user must be logged to acces route
  */
 
-/* logout route*/
+// get logout
 router.get('/admin/logout', isLogged, function(req, res){
+    // set goodbye flash message, log user out, redirect to site homepage
     req.flash('success', 'bye');
     req.logout();
 	res.redirect('/');
 });
-
-/* admin home route */
+// get admin homepage
 router.get('/admin', isLogged, function(req ,res){
+    // find all post in database, render admin homepage
     Post.find().sort('-created').exec(function(err, docs){
         if(err){
             return next(err);
@@ -95,18 +94,20 @@ router.get('/admin', isLogged, function(req ,res){
         res.render('adminViews/adminHome', { posts : docs, title : 'Fhtagn | admin' });
     });
 });
-
-/* admin posts routes */
+// get new post page
 router.get('/admin/newPost', isLogged, function(req, res){
+    // render create newpost page
 	res.render('adminViews/createNewPost', { title : 'Fhtagn | admin' });
 });
+// post save new post form
 router.post('/admin/saveNewPost', isLogged, function(req, res, next){
 
+    // get info from form
     var title  = req.body.title;
     var post   = req.body.post;
     var author = req.user.username;
     var tags   = req.body.tags.split(',');
-
+    // create new post
     var newPost = Post({
         title   : title,
         post    : post,
@@ -115,20 +116,22 @@ router.post('/admin/saveNewPost', isLogged, function(req, res, next){
         created : Date.now(),
         updated : Date.now()
     });
-
+    // save post in database
     newPost.save(function(err){
         if(err){
             return next(err);
         }
     });
-
+    // all went well, set flash message, redirect to admin home
     req.flash('success', 'Post successfully saved.');
     res.redirect('/admin');
 });
+// get edit post by id
 router.get('/admin/post/:id', isLogged, function(req ,res, next){
 
+    // get post id from form
     var id = req.params.id;
-
+    // find post in database, render edit post page
     Post.findOne({_id : id}, function(err, doc){
         if(err){
             return next(err);
@@ -136,24 +139,26 @@ router.get('/admin/post/:id', isLogged, function(req ,res, next){
         res.render('adminViews/editPost', {title : 'Fhtagn | admin', post : doc});
     });
 });
+// post save post form
 router.post('/admin/savePost', isLogged, function(req ,res, next){
 
+    // get info from form
     var id      = req.body.id;
     var title   = req.body.title;
     var post    = req.body.post;
     var tags    = req.body.tags.split(',');
-
+    // find post in database
     Post.findOne({_id : id}, function(err, doc){
 
         if(err){
             return next(err);
         }
-
+        // update post object
         doc.title   = title;
         doc.post    = post;
         doc.tags    = tags;
         doc.updated = Date.now();
-
+        // save post in database, set flas message, redirect to admin homepage
         doc.save(function(err){
 
             if(err){
@@ -164,12 +169,13 @@ router.post('/admin/savePost', isLogged, function(req ,res, next){
         })
     })
 });
+// post del post
 router.post('/admin/delPost', isLogged, function(req, res){
 	res.redirect('/admin');
 });
-
-/* users routes */
+// get all users page
 router.get('/admin/users', isLogged, function(req, res, next){
+    // find all users in database, render users page
     User.find().exec(function(err, docs){
         if(err){
             return next(err);
@@ -177,15 +183,17 @@ router.get('/admin/users', isLogged, function(req, res, next){
         res.render('adminViews/users', { title : 'Fhtagn | admin' , users : docs});
     })
 });
-router.get('/admin/user', isLogged, function(req, res){
+// get user page by id
+router.get('/admin/user/:id', isLogged, function(req, res){
 	res.render('adminViews/user', { title : 'Fhtagn | admin' });
 });
+// post save user form
 router.post('/admin/saveUser', isLogged, function(req, res, next){
 
+    // get user info from form
 	var username = req.body.username;
 	var email    = req.body.email;
 	var password = req.body.password;
-
 	// create user
 	var newUser = new User({
 		username     : username,
@@ -193,8 +201,7 @@ router.post('/admin/saveUser', isLogged, function(req, res, next){
 		passwordHash : password,
 		role         : 'peon'
 	});
-
-	// save the user
+	// save the user in database, set flash messages, redirect to users
 	newUser.save(function(err){
 		if(err){
 			return next(err);
@@ -202,25 +209,27 @@ router.post('/admin/saveUser', isLogged, function(req, res, next){
 		res.redirect('/admin/users');
 	});
 });
+// post del user form
 router.post('/admin/delUser', isLogged, function(req, res){
 	res.redirect('/admin/users');
 });
-
-/* files routes */
+// get admin upload file file
 router.get('/admin/files', isLogged, function(req, res){
 	res.render('adminViews/files', { title : 'Fhtagn | admin' });
 });
+// post save file
 router.post('/admin/upload', isLogged, function(req, res){
 	res.redirect('/admin/files');
 });
+// del file
 router.post('/admin/delFile', isLogged, function(req, res){
 	res.redirect('/admin/files');
 });
-
-/* theme routes */
+// get admin themes page
 router.get('/admin/theme', isLogged, function(req, res){
 	res.render('adminViews/theme', { title : 'Fhtagn | admin' });
 });
+// post change theme
 router.post('/admin/theme', isLogged, function(req, res){
 	res.redirect('/admin/theme');
 });
