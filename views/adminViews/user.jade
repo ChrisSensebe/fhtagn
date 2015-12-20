@@ -6,14 +6,15 @@ block content
 				.col-md-12
 					h2.page-header User
 					form(method="post" action="/admin/saveUser")
+						input(id="id" name="id" value="#{user._id}" type="hidden")
 						label(for="username") Username
-						input(class="form-control" id="username" name="username" required)
+						input(class="form-control" id="username" name="username"  value="#{user.username}" required)
 						label(for="email") Email
-						input(class="form-control" id="email" name="email" type="email" required)
+						input(class="form-control" id="email" name="email" type="email" value="#{user.email}" required)
 						label(for="password") Password
-						input(class="form-control" id="password" name="password" type="password" required)
+						input(class="form-control" id="password" name="password" type="password")
 						label(for="passwordRepeat") Repeat password
-						input(class="form-control" id="passwordRepeat" name="passwordRepeat" type="password" required)
+						input(class="form-control" id="passwordRepeat" name="passwordRepeat" type="password")
 						label(for="role") Role
 						select(id="role" name="role" class="form-control" required)
 							option(value="role1") Role1

@@ -205,31 +205,60 @@ router.get('/admin/user/:id', isLogged, function(req, res, next){
 });
 //post save new user
 router.post('/admin/saveNewUser', isLogged, function(req, res){
-
+    // get user info from form
+    var username = req.body.username;
+    var email    = req.body.email;
+    var password = req.body.password;
+    // create new user
+    var newUser = new User({
+        username     : username,
+        email        : email,
+        passwordHash : password,
+        role         : 'peon'
+    });
+    // save user in database, set flash messages, redirect to users
+    newUser.save(function(err){
+        if(err){
+            if(err){
+                req.flash('danger', 'Error saving user in database');
+                return next(err);
+            }
+            req.flash('success', 'User successfully saved');
+            res.redirect('/admin/users');
+        }
+    })
 });
 // post save user form
 router.post('/admin/saveUser', isLogged, function(req, res, next){
-
     // get user info from form
+    var id       = req.body.id
 	var username = req.body.username;
-	var email    = req.body.email;
-	var password = req.body.password;
-	// create user
-	var newUser = new User({
-		username     : username,
-		email        : email,
-		passwordHash : password,
-		role         : 'peon'
-	});
-	// save the user in database, set flash messages, redirect to users
-	newUser.save(function(err){
-		if(err){
-            req.flash('danger', 'Error saving user in database');
-			return next(err);
-		}
+    var email    = req.body.email;
+    if(req.body.password){
+        var password = req.body.password;
+    }
+    // find user in database
+    User.findOne({_id : id}, function(err, doc){
+        if(err){
+            return next(err);
+        }
+        // update user
+        doc.username = username;
+        doc.email    = email;
+        doc.updated  = Date.now();
+        if(password){
+            doc.passwordHash = password;
+        }
+        // save user in database
+        doc.save(function(err){
+            if(err){
+                req.flash('danger', 'Error saving user in database');
+                return next(err);
+            }
+        })
         req.flash('success', 'User successfully saved');
-		res.redirect('/admin/users');
-	});
+        res.redirect('/admin/users');
+    });
 });
 // post del user form
 router.post('/admin/delUser', isLogged, function(req, res){
