@@ -119,6 +119,7 @@ router.post('/admin/saveNewPost', isLogged, function(req, res, next){
     // save post in database
     newPost.save(function(err){
         if(err){
+            req.flash('danger', 'error saving post in database');
             return next(err);
         }
     });
@@ -151,6 +152,7 @@ router.post('/admin/savePost', isLogged, function(req ,res, next){
     Post.findOne({_id : id}, function(err, doc){
 
         if(err){
+            req.flash('danger', 'Error saving post in database');
             return next(err);
         }
         // update post object
@@ -158,10 +160,11 @@ router.post('/admin/savePost', isLogged, function(req ,res, next){
         doc.post    = post;
         doc.tags    = tags;
         doc.updated = Date.now();
-        // save post in database, set flas message, redirect to admin homepage
+        // save post in database, set flash message, redirect to admin homepage
         doc.save(function(err){
 
             if(err){
+                req.flash('danger', 'Error saving post in database');
                 return next(err);
             }
             req.flash('success', 'Post successfully updated');
@@ -204,8 +207,10 @@ router.post('/admin/saveUser', isLogged, function(req, res, next){
 	// save the user in database, set flash messages, redirect to users
 	newUser.save(function(err){
 		if(err){
+            req.flash('danger', 'Error saving user in database');
 			return next(err);
 		}
+        req.flash('success', 'User successfully saved');
 		res.redirect('/admin/users');
 	});
 });
