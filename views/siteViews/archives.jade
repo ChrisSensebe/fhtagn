@@ -4,7 +4,7 @@ block content
 	.container
 		.row
 			.col-md-12
-				h2.page-header Archives
+				h2.page-header #{pageTitle}
 				- each post in posts
 					h3
 						a(href="/post/#{post._id}")= post.title
