@@ -4,6 +4,7 @@ var User     = require('../models/user.js');
 var Post     = require('../models/post.js');
 var passport = require('passport');
 var isLogged = require('../middlewares/isLogged.js');
+var siteConf = require('../config/siteConfig.js');
 
 /**
  * site routes
@@ -16,7 +17,7 @@ router.get('/', function(req, res, next) {
         if(err){
             return next(err);
         }
-        res.render('siteViews/index', { posts : docs, title : 'Fhtagn' });
+        res.render('siteViews/index', {posts : docs, title : siteConf.siteTitle });
     });
 });
 // get post by id
@@ -29,12 +30,12 @@ router.get('/post/:id', function(req, res, next){
         if(err){
             return next(err);
         }
-        res.render('siteViews/post', { title : 'Fhtagn', post : doc});
+        res.render('siteViews/post', {title : siteConf.siteTitle, post : doc});
     });
 });
 // get tags page
 router.get('/tags', function(req ,res){
-	res.render('siteViews/tags', { title : 'Fhtagn' });
+	res.render('siteViews/tags', {title : siteConf.siteTitle});
 });
 // get archives page
 router.get('/archives', function(req ,res){
@@ -43,13 +44,13 @@ router.get('/archives', function(req ,res){
         if(err){
             return next(err);
         }
-        res.render('siteViews/archives', { posts : docs, title : 'Fhtagn' });
+        res.render('siteViews/archives', {posts : docs, title : siteConf.siteTitle});
     });
 });
 // get about page
 router.get('/about', function(req, res){
     // render about page
-	res.render('siteViews/about', { title : 'Fhtagn' });
+	res.render('siteViews/about', {title : siteConf.siteTitle});
 });
 
 /**
@@ -63,7 +64,7 @@ router.get('/about', function(req, res){
 // get login page
 router.get('/admin/login', function(req ,res){
     // render login page
-	res.render('adminViews/login', { title: 'Fhtagn | admin' });
+	res.render('adminViews/login', {title : siteConf.adminTitle});
 });
 // post login form
 // use passport for authentication, failure redirect to login, success to admin homepage
@@ -91,13 +92,13 @@ router.get('/admin', isLogged, function(req ,res){
         if(err){
             return next(err);
         }
-        res.render('adminViews/adminHome', { posts : docs, title : 'Fhtagn | admin' });
+        res.render('adminViews/adminHome', {posts : docs, title : siteConf.adminTitle});
     });
 });
 // get new post page
 router.get('/admin/newPost', isLogged, function(req, res){
     // render create newpost page
-	res.render('adminViews/createNewPost', { title : 'Fhtagn | admin' });
+	res.render('adminViews/createNewPost', {title : siteConf.adminTitle});
 });
 // post save new post form
 router.post('/admin/saveNewPost', isLogged, function(req, res, next){
@@ -137,7 +138,7 @@ router.get('/admin/post/:id', isLogged, function(req ,res, next){
         if(err){
             return next(err);
         }
-        res.render('adminViews/editPost', {title : 'Fhtagn | admin', post : doc});
+        res.render('adminViews/editPost', {title : siteConf.adminTitle, post : doc});
     });
 });
 // post save post form
@@ -183,13 +184,13 @@ router.get('/admin/users', isLogged, function(req, res, next){
         if(err){
             return next(err);
         }
-        res.render('adminViews/users', { title : 'Fhtagn | admin' , users : docs});
+        res.render('adminViews/users', {title : siteConf.adminTitle, users : docs});
     })
 });
 // get newUser page
 router.get('/admin/newUser', isLogged, function(req, res){
     // render new user page
-    res.render('adminViews/newUser', {title : 'Fhtagn | admin'});
+    res.render('adminViews/newUser', {title : siteConf.adminTitle});
 });
 // get user page by id
 router.get('/admin/user/:id', isLogged, function(req, res, next){
@@ -200,7 +201,7 @@ router.get('/admin/user/:id', isLogged, function(req, res, next){
         if(err){
             return next(err);
         }
-        res.render('adminViews/user', { title : 'Fhtagn | admin' , user : doc});
+        res.render('adminViews/user', {title : siteConf.adminTitle, user : doc});
     })
 });
 //post save new user
@@ -278,7 +279,7 @@ router.post('/admin/delFile', isLogged, function(req, res){
 });
 // get admin themes page
 router.get('/admin/theme', isLogged, function(req, res){
-	res.render('adminViews/theme', { title : 'Fhtagn | admin' });
+	res.render('adminViews/theme', { title : siteConf.adminTitle});
 });
 // post change theme
 router.post('/admin/theme', isLogged, function(req, res){
