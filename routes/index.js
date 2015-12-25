@@ -1,73 +1,22 @@
-var express  = require('express');
-var router   = express.Router();
-var User     = require('../models/user.js');
-var Post     = require('../models/post.js');
-var passport = require('passport');
-var isLogged = require('../middlewares/isLogged.js');
-var siteConf = require('../config/siteConfig.js');
+var express          = require('express');
+var router           = express.Router();
+var siteControllers  = require('./siteControllers.js');
+var adminControllers = require('./adminControllers.js');
+var User             = require('../models/user.js');
+var Post             = require('../models/post.js');
+var passport         = require('passport');
+var isLogged         = require('../middlewares/isLogged.js');
+var siteConf         = require('../config/siteConfig.js');
 
 /**
  * site routes
  */
 
-// get homepage
-router.get('/', function(req, res, next) {
-    // find last ten posts in database, render site homepage
-    Post.find().sort('-created').limit(10).exec(function(err, docs){
-        if(err){
-            return next(err);
-        }
-        res.render('siteViews/index', {
-            title : siteConf.siteConfig.homePage.pageTitle,
-            pageTitle : siteConf.siteConfig.homePage.pageTitle,
-            posts : docs
-        });
-    });
-});
-// get post by id
-router.get('/post/:id', function(req, res, next){
-    // get post id from url
-    var id = req.params.id;
-    // find post in database, render post page
-    Post.findOne({_id : id}, function(err, doc){
-        if(err){
-            return next(err);
-        }
-        res.render('siteViews/post', {
-            title : siteConf.siteConfig.siteTitle,
-            post : doc
-        });
-    });
-});
-// get tags page
-router.get('/tags', function(req ,res){
-	res.render('siteViews/tags', {
-        title : siteConf.siteConfig.siteTitle,
-        pageTitle : siteConf.siteConfig.tagsPage.pageTitle
-    });
-});
-// get archives page
-router.get('/archives', function(req ,res){
-    // find all posts in database, render archives page
-    Post.find().sort('-created').exec(function(err, docs){
-        if(err){
-            return next(err);
-        }
-        res.render('siteViews/archives', {
-            title : siteConf.siteConfig.siteTitle,
-            pageTitle : siteConf.siteConfig.archivesPage.pageTitle,
-            posts : docs
-        });
-    });
-});
-// get about page
-router.get('/about', function(req, res){
-    // render about page
-	res.render('siteViews/about', {
-        title : siteConf.siteConfig.siteTitle,
-        pageTitle : siteConf.siteConfig.aboutPage.pageTitle
-    });
-});
+router.get('/',         siteControllers.getHome);
+router.get('/post/:id', siteControllers.getPostById);
+router.get('/tags',     siteControllers.getTags);
+router.get('/archives', siteControllers.getArchives);
+router.get('/about',    siteControllers.getAbout);
 
 /**
  * Admin routes
