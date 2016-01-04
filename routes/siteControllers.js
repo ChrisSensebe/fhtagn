@@ -58,3 +58,11 @@ exports.getAbout = function(req, res){
         pageTitle : siteConf.siteConfig.aboutPage.pageTitle
     });
 };
+// get login page
+exports.getLogin = function(req, res){
+    // render login page
+    res.render('siteViews/login', {
+        title : siteConf.adminConfig.siteTitle,
+        pageTitle : siteConf.adminConfig.loginPage.pageTitle
+    });
+};

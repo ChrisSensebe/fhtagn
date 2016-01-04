@@ -17,26 +17,8 @@ router.get('/post/:id', siteControllers.getPostById);
 router.get('/tags',     siteControllers.getTags);
 router.get('/archives', siteControllers.getArchives);
 router.get('/about',    siteControllers.getAbout);
-
-/**
- * Admin routes
- */
-
-/**
- * unprotected routes
- */
-
-// get login page
-router.get('/login', function(req ,res){
-    // render login page
-	res.render('siteViews/login', {
-        title : siteConf.adminConfig.siteTitle,
-        pageTitle : siteConf.adminConfig.loginPage.pageTitle
-    });
-});
-// post login form
-// use passport for authentication, failure redirect to login, success to admin homepage
-router.post('/login', passport.authenticate('local-login', {
+router.get('/login',    siteControllers.getLogin);
+router.post('/login',   passport.authenticate('local-login', {
     successRedirect  : '/admin',
     failureRedirect : '/login',
     failureFlash    : true
