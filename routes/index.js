@@ -27,18 +27,18 @@ router.get('/about',    siteControllers.getAbout);
  */
 
 // get login page
-router.get('/admin/login', function(req ,res){
+router.get('/login', function(req ,res){
     // render login page
-	res.render('adminViews/login', {
+	res.render('siteViews/login', {
         title : siteConf.adminConfig.siteTitle,
         pageTitle : siteConf.adminConfig.loginPage.pageTitle
     });
 });
 // post login form
 // use passport for authentication, failure redirect to login, success to admin homepage
-router.post('/admin/login', passport.authenticate('local-login', {
+router.post('/login', passport.authenticate('local-login', {
     successRedirect  : '/admin',
-    failureRedirect : '/admin/login',
+    failureRedirect : '/login',
     failureFlash    : true
 }));
 
