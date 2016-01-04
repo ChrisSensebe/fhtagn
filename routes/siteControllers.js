@@ -62,7 +62,7 @@ exports.getAbout = function(req, res){
 exports.getLogin = function(req, res){
     // render login page
     res.render('siteViews/login', {
-        title : siteConf.adminConfig.siteTitle,
-        pageTitle : siteConf.adminConfig.loginPage.pageTitle
+        title : siteConf.siteConfig.siteTitle,
+        pageTitle : siteConf.siteConfig.loginPage.pageTitle
     });
 };

@@ -19,7 +19,7 @@ router.get('/archives', siteControllers.getArchives);
 router.get('/about',    siteControllers.getAbout);
 router.get('/login',    siteControllers.getLogin);
 router.post('/login',   passport.authenticate('local-login', {
-    successRedirect  : '/admin',
+    successRedirect  : '/admin/',
     failureRedirect : '/login',
     failureFlash    : true
 }));
@@ -27,16 +27,17 @@ router.post('/login',   passport.authenticate('local-login', {
 /**
  * protected routes user must be logged to acces route
  */
+router.all('/admin/*', isLogged);
 
 // get logout
-router.get('/admin/logout', isLogged, function(req, res){
+router.get('/admin/logout', function(req, res){
     // set goodbye flash message, log user out, redirect to site homepage
     req.flash('success', 'bye');
     req.logout();
 	res.redirect('/');
 });
 // get admin homepage
-router.get('/admin', isLogged, function(req ,res){
+router.get('/admin/', function(req ,res){
     // find all post in database, render admin homepage
     Post.find().sort('-created').exec(function(err, docs){
         if(err){
@@ -50,7 +51,7 @@ router.get('/admin', isLogged, function(req ,res){
     });
 });
 // get new post page
-router.get('/admin/newPost', isLogged, function(req, res){
+router.get('/admin/newPost', function(req, res){
     // render create newpost page
 	res.render('adminViews/createNewPost', {
         title : siteConf.adminConfig.siteTitle,
@@ -58,7 +59,7 @@ router.get('/admin/newPost', isLogged, function(req, res){
     });
 });
 // post save new post form
-router.post('/admin/saveNewPost', isLogged, function(req, res, next){
+router.post('/admin/saveNewPost', function(req, res, next){
 
     // get info from form
     var title  = req.body.title;
@@ -83,10 +84,10 @@ router.post('/admin/saveNewPost', isLogged, function(req, res, next){
     });
     // all went well, set flash message, redirect to admin home
     req.flash('success', 'Post successfully saved.');
-    res.redirect('/admin');
+    res.redirect('/admin/');
 });
 // get edit post by id
-router.get('/admin/post/:id', isLogged, function(req ,res, next){
+router.get('/admin/post/:id', function(req ,res, next){
     // get post id from form
     var id = req.params.id;
     // find post in database, render edit post page
@@ -101,7 +102,7 @@ router.get('/admin/post/:id', isLogged, function(req ,res, next){
     });
 });
 // post save post form
-router.post('/admin/savePost', isLogged, function(req ,res, next){
+router.post('/admin/savePost', function(req ,res, next){
     // get info from form
     var id      = req.body.id;
     var title   = req.body.title;
@@ -127,16 +128,16 @@ router.post('/admin/savePost', isLogged, function(req ,res, next){
                 return next(err);
             }
             req.flash('success', 'Post successfully updated');
-            res.redirect('/admin');
+            res.redirect('/admin/');
         });
     });
 });
 // post del post
-router.post('/admin/delPost', isLogged, function(req, res){
-	res.redirect('/admin');
+router.post('/admin/delPost', function(req, res){
+	res.redirect('/admin/');
 });
 // get all users page
-router.get('/admin/users', isLogged, function(req, res, next){
+router.get('/admin/users', function(req, res, next){
     // find all users in database, render users page
     User.find().exec(function(err, docs){
         if(err){
@@ -150,7 +151,7 @@ router.get('/admin/users', isLogged, function(req, res, next){
     });
 });
 // get newUser page
-router.get('/admin/newUser', isLogged, function(req, res){
+router.get('/admin/newUser', function(req, res){
     // render new user page
     res.render('adminViews/newUser', {
         title : siteConf.adminConfig.siteTitle,
@@ -158,7 +159,7 @@ router.get('/admin/newUser', isLogged, function(req, res){
     });
 });
 // get user page by id
-router.get('/admin/user/:id', isLogged, function(req, res, next){
+router.get('/admin/user/:id', function(req, res, next){
     // get user id from url
     var userId = req.params.id;
     // find user in database, render edit user page
@@ -173,7 +174,7 @@ router.get('/admin/user/:id', isLogged, function(req, res, next){
     });
 });
 //post save new user
-router.post('/admin/saveNewUser', isLogged, function(req, res){
+router.post('/admin/saveNewUser', function(req, res){
     // get user info from form
     var username = req.body.username;
     var email    = req.body.email;
@@ -198,7 +199,7 @@ router.post('/admin/saveNewUser', isLogged, function(req, res){
     });
 });
 // post save user form
-router.post('/admin/saveUser', isLogged, function(req, res, next){
+router.post('/admin/saveUser', function(req, res, next){
     // get user info from form
     var id       = req.body.id;
 	var username = req.body.username;
@@ -230,33 +231,33 @@ router.post('/admin/saveUser', isLogged, function(req, res, next){
     });
 });
 // post del user form
-router.post('/admin/delUser', isLogged, function(req, res){
+router.post('/admin/delUser', function(req, res){
 	res.redirect('/admin/users');
 });
 // get admin upload file file
-router.get('/admin/files', isLogged, function(req, res){
+router.get('/admin/files', function(req, res){
 	res.render('adminViews/files', {
         title : siteConf.adminConfig.siteTitle,
         pageTitle : siteConf.adminConfig.filesPage.pageTilte
     });
 });
 // post save file
-router.post('/admin/upload', isLogged, function(req, res){
+router.post('/admin/upload', function(req, res){
 	res.redirect('/admin/files');
 });
 // del file
-router.post('/admin/delFile', isLogged, function(req, res){
+router.post('/admin/delFile', function(req, res){
 	res.redirect('/admin/files');
 });
 // get admin themes page
-router.get('/admin/theme', isLogged, function(req, res){
+router.get('/admin/theme', function(req, res){
 	res.render('adminViews/theme', {
         title : siteConf.adminConfig.siteTitle,
         pageTitle : siteConf.adminConfig.themePage.pageTitle
     });
 });
 // post change theme
-router.post('/admin/theme', isLogged, function(req, res){
+router.post('/admin/theme', function(req, res){
 	res.redirect('/admin/theme');
 });
 

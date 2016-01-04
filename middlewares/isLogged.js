@@ -9,6 +9,6 @@ module.exports = function(req, res, next){
         return next();
     }
     req.flash('danger', 'You must be logged to do that');
-    res.redirect('/admin/login');
+    res.redirect('/login');
 
 }

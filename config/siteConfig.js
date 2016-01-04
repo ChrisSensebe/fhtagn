@@ -15,6 +15,9 @@ var siteConfig = {
         },
         aboutPage : {
             pageTitle : 'About'
+        },
+        loginPage : {
+            pageTitle : 'Login'
         }
     },
     adminConfig : {
@@ -38,9 +41,6 @@ var siteConfig = {
         },
         themePage : {
             pageTitle : 'Theme'
-        },
-        loginPage : {
-            pageTitle : 'Login'
         }
     }
 }
