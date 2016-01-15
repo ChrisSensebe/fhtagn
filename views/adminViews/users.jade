@@ -6,10 +6,15 @@ block content
             .col-md-12
                 h2.page-header #{pageTitle}
                 - each user in users
-                    h3
-                        a(href="/admin/user/#{user._id}")= user.username
+                    h3 #{user.username}
                     p= user.email
                     p= user.role
+                    p
+                        a(href="/admin/user/#{user.id}" class="btn btn-primary") Edit user
+                    p
+                        form(method="post" action="admin/delUser")
+                            input(type="hidden" id="delUser" name="delUser" value="user.id")
+                            button.btn.btn-danger Delete user
     .container
         .row
             .col-md-12
