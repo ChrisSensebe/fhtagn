@@ -40,7 +40,7 @@ router.get('/admin/theme',        adminControllers.getTheme);
 router.get('/admin/logout',       adminControllers.getLogout);
 router.post('/admin/saveNewPost', adminControllers.postNewPost);
 router.post('/admin/savePost',    adminControllers.postSavePost);
-router.post('/admin/delPost/:id', adminControllers.postDelPost);
+router.post('/admin/delPost',     adminControllers.postDelPost);
 router.post('/admin/saveNewUser', adminControllers.postSaveNewUser);
 router.post('/admin/saveUser',    adminControllers.postSaveUser);
 router.post('/admin/delUser',     adminControllers.postDelUser);

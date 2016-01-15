@@ -16,8 +16,9 @@ block content
                     p
                         a(href="admin/post/#{post.id}" class="btn btn-primary") Edit post
                     p
-                        form(method="post" action="admin/delpost/#{post.id}")
-                        button.btn.btn-danger Delete post
+                        form(method="post" action="/admin/delPost")
+                            input(type="hidden" id="postId" name="postId" value="#{post.id}")
+                            button.btn.btn-danger Delete post
         .row
             .col-md-12
                 p
