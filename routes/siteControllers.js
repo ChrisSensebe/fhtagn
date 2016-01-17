@@ -42,6 +42,7 @@ exports.getPostById = function(req,res, next){
         if(err){
             return next(err);
         }
+        // add post to page content
         pageContent.post = doc;
         res.render('siteViews/post', {
             pageContent : pageContent
@@ -51,7 +52,12 @@ exports.getPostById = function(req,res, next){
 // get tags page
 exports.getTags = function(req ,res){
     res.render('siteViews/tags', {
-        siteConfig : siteConf.site,
+        pageContent : {
+            siteTitle : siteConf.site.siteTitle,
+            linkToAdminTitle : siteConf.site.linkToAdminTitle,
+            menuTitles : siteConf.site.menuTitles,
+            pageTitle : siteConf.site.tagsPage.pageTitle
+        }
     });
 };
 // get archives page
