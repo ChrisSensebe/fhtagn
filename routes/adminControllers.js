@@ -219,7 +219,7 @@ exports.postDelUser = function(req, res, next){
             req.flash('danger', 'Error deleting user from database');
             return next(err);
         }
-        req.flash('succes', 'User succesfully deleted');
+        req.flash('success', 'User succesfully deleted');
         res.redirect('/admin/users');
     });
 };

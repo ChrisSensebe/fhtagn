@@ -12,7 +12,7 @@ block content
                     p
                         a(href="/admin/user/#{user.id}" class="btn btn-primary") Edit user
                     p
-                        form(method="post" action="admin/delUser")
+                        form(method="post" action="/admin/delUser")
                             input(type="hidden" id="delUser" name="delUser" value="#{user.id}")
                             button.btn.btn-danger Delete user
     .container
