@@ -92,7 +92,13 @@ exports.getArchives = function(req ,res){
 exports.getAbout = function(req, res){
     // render about page
     res.render('siteViews/about', {
-        siteConfig : siteConf.site,
+        pageContent : {
+            siteTitle : siteConf.site.siteTitle,
+            linkToAdminTitle : siteConf.site.linkToAdminTitle,
+            menuTitles : siteConf.site.menuTitles,
+            pageTitle : siteConf.site.aboutPage.pageTitle,
+            footerText : siteConf.site.footerText
+        }
     });
 };
 // get login page
