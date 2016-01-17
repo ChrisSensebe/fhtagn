@@ -2,10 +2,24 @@
  * Created by csensebe on 20/12/2015.
  */
 var siteConfig = {
-    siteConfig : {
+    site : {
         siteTitle : 'Fhtagn',
+        menuTitles : ['home', 'tags', 'archives', 'about'],
+        linkToAdminTitle : 'Admin',
         homePage : {
-            pageTitle : 'Home'
+            pageTitle : 'home',
+            pageContent : {
+                createdText : 'created : ',
+                authorText  : 'by : ',
+                tagsText    : 'tags : '
+            }
+        },
+        postPage : {
+            pageContent : {
+                createdText : 'created : ',
+                authorText  : 'by : '
+            }
+
         },
         tagsPage : {
             pageTitle : 'Tags'
@@ -20,18 +34,20 @@ var siteConfig = {
             pageTitle : 'Login'
         }
     },
-    adminConfig : {
+    admin : {
         siteTitle : 'Fhtagn | admin',
+        menuTitles : [],
+        linkToSiteTitle : 'Go to site',
         homePage : {
             pageTitle : 'Posts'
         },
         newPostPage : {
             pageTitle : 'New Post'
         },
-        postPage : {},
-        usersPage : {
-            pageTitle : 'Users'
+        postPage : {
+            pageTilte : ''
         },
+        usersPage : {},
         newUserPage : {
             pageTitle : 'New user'
         },
@@ -40,7 +56,7 @@ var siteConfig = {
             pageTilte : 'Files'
         },
         themePage : {
-            pageTitle : 'Theme'
+            pageTitle : 'Site config'
         }
     }
 }
