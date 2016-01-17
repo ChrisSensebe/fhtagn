@@ -6,7 +6,9 @@ var userSchema = mongoose.Schema({
 	username     : String,
 	email        : String,
 	passwordHash : String,
-	role         : String
+	role         : String,
+	created      : Date,
+    updated      : Date
 });
 
 userSchema.set('autoIndex', false);

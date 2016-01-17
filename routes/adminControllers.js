@@ -158,12 +158,15 @@ exports.postSaveNewUser = function(req, res, next){
     var username = req.body.username;
     var email    = req.body.email;
     var password = req.body.password;
+    var role     = req.body.role;
     // create new user
     var newUser = new User({
         username     : username,
         email        : email,
         passwordHash : password,
-        role         : 'peon'
+        role         : role,
+        created      : Date.now(),
+        updated      : Date.now()
     });
     // save user in database, set flash messages, redirect to users
     newUser.save(function(err){
@@ -185,6 +188,7 @@ exports.postSaveUser = function(req, res, next){
     if(req.body.password){
         var password = req.body.password;
     }
+    var role = req.body.role;
     // find user in database
     User.findOne({_id : id}, function(err, doc){
         if(err){
@@ -193,10 +197,11 @@ exports.postSaveUser = function(req, res, next){
         // update user
         doc.username = username;
         doc.email    = email;
-        doc.updated  = Date.now();
         if(password){
             doc.passwordHash = password;
         }
+        doc.role = role;
+        doc.updated  = Date.now();
         // save user in database
         doc.save(function(err){
             if(err){
