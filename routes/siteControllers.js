@@ -1,18 +1,18 @@
-var Post     = require('../models/post.js');
-var siteConf = require('../config/siteConfig.js');
+var Post      = require('../models/post.js');
+var siteTexts = require('../config/siteTexts.js');
 
 // find last ten posts in database, render site homepage
 exports.getHome = function (req, res, next){
     // populate page content
     var pageContent = {
-        siteTitle : siteConf.site.siteTitle,
-        linkToAdminTitle : siteConf.site.linkToAdminTitle,
-        menuTitles : siteConf.site.menuTitles,
-        pageTitle : siteConf.site.homePage.pageTitle,
-        createdText : siteConf.site.homePage.pageContent.createdText,
-        authorText : siteConf.site.homePage.pageContent.authorText,
-        tagsText : siteConf.site.homePage.pageContent.tagsText,
-        footerText : siteConf.site.footerText
+        siteTitle : siteTexts.siteTitle,
+        linkToAdminTitle : siteTexts.linkToAdminTitle,
+        menuTitles : siteTexts.menuTitles,
+        pageTitle : siteTexts.homePage.pageTitle,
+        createdText : siteTexts.homePage.pageContent.createdText,
+        authorText : siteTexts.homePage.pageContent.authorText,
+        tagsText : siteTexts.homePage.pageContent.tagsText,
+        footerText : siteTexts.footerText
     };
     // fetch 10 last posts from database
     Post.find().sort('-created').limit(10).exec(function(err, docs){
@@ -32,12 +32,12 @@ exports.getPostById = function(req,res, next){
     var id = req.params.id;
     // populate page content
     var pageContent = {
-        siteTitle : siteConf.site.siteTitle,
-        linkToAdminTitle : siteConf.site.linkToAdminTitle,
-        menuTitles : siteConf.site.menuTitles,
-        createdText : siteConf.site.postPage.pageContent.createdText,
-        authorText : siteConf.site.postPage.pageContent.authorText,
-        footerText : siteConf.site.footerText
+        siteTitle : siteTexts.siteTitle,
+        linkToAdminTitle : siteTexts.linkToAdminTitle,
+        menuTitles : siteTexts.menuTitles,
+        createdText : siteTexts.postPage.pageContent.createdText,
+        authorText : siteTexts.postPage.pageContent.authorText,
+        footerText : siteTexts.footerText
     };
     // find post in database, render post page
     Post.findOne({_id : id}, function(err, doc){
@@ -55,11 +55,11 @@ exports.getPostById = function(req,res, next){
 exports.getTags = function(req ,res){
     res.render('siteViews/tags', {
         pageContent : {
-            siteTitle : siteConf.site.siteTitle,
-            linkToAdminTitle : siteConf.site.linkToAdminTitle,
-            menuTitles : siteConf.site.menuTitles,
-            pageTitle : siteConf.site.tagsPage.pageTitle,
-            footerText : siteConf.site.footerText
+            siteTitle : siteTexts.siteTitle,
+            linkToAdminTitle : siteTexts.linkToAdminTitle,
+            menuTitles : siteTexts.menuTitles,
+            pageTitle : siteTexts.tagsPage.pageTitle,
+            footerText : siteTexts.footerText
         }
     });
 };
@@ -67,14 +67,14 @@ exports.getTags = function(req ,res){
 exports.getArchives = function(req ,res){
     // populate page content
     var pageContent = {
-        siteTitle : siteConf.site.siteTitle,
-        linkToAdminTitle : siteConf.site.linkToAdminTitle,
-        menuTitles : siteConf.site.menuTitles,
-        pageTitle : siteConf.site.archivesPage.pageTitle,
-        createdText : siteConf.site.archivesPage.pageContent.createdText,
-        authorText : siteConf.site.archivesPage.pageContent.authorText,
-        tagsText : siteConf.site.archivesPage.pageContent.tagsText,
-        footerText : siteConf.site.footerText
+        siteTitle : siteTexts.siteTitle,
+        linkToAdminTitle : siteTexts.linkToAdminTitle,
+        menuTitles : siteTexts.menuTitles,
+        pageTitle : siteTexts.archivesPage.pageTitle,
+        createdText : siteTexts.archivesPage.pageContent.createdText,
+        authorText : siteTexts.archivesPage.pageContent.authorText,
+        tagsText : siteTexts.archivesPage.pageContent.tagsText,
+        footerText : siteTexts.footerText
     }
     // find all posts in database, render archives page
     Post.find().sort('-created').exec(function(err, docs){
@@ -93,11 +93,11 @@ exports.getAbout = function(req, res){
     // render about page
     res.render('siteViews/about', {
         pageContent : {
-            siteTitle : siteConf.site.siteTitle,
-            linkToAdminTitle : siteConf.site.linkToAdminTitle,
-            menuTitles : siteConf.site.menuTitles,
-            pageTitle : siteConf.site.aboutPage.pageTitle,
-            footerText : siteConf.site.footerText
+            siteTitle : siteTexts.siteTitle,
+            linkToAdminTitle : siteTexts.linkToAdminTitle,
+            menuTitles : siteTexts.menuTitles,
+            pageTitle : siteTexts.aboutPage.pageTitle,
+            footerText : siteTexts.footerText
         }
     });
 };
@@ -106,14 +106,14 @@ exports.getLogin = function(req, res){
     // render login page
     res.render('siteViews/login', {
         pageContent : {
-            siteTitle : siteConf.site.siteTitle,
-            linkToAdminTitle : siteConf.site.linkToAdminTitle,
-            menuTitles : siteConf.site.menuTitles,
-            pageTitle : siteConf.site.loginPage.pageTitle,
-            labelForUsername : siteConf.site.loginPage.pageContent.labelForUsername,
-            labelForPassword : siteConf.site.loginPage.pageContent.labelForPassword,
-            loginButtonText : siteConf.site.loginPage.pageContent.loginButtonText,
-            footerText : siteConf.site.footerText
+            siteTitle : siteTexts.siteTitle,
+            linkToAdminTitle : siteTexts.linkToAdminTitle,
+            menuTitles : siteTexts.menuTitles,
+            pageTitle : siteTexts.loginPage.pageTitle,
+            labelForUsername : siteTexts.loginPage.pageContent.labelForUsername,
+            labelForPassword : siteTexts.loginPage.pageContent.labelForPassword,
+            loginButtonText : siteTexts.loginPage.pageContent.loginButtonText,
+            footerText : siteTexts.footerText
         }
     });
 };

@@ -1,6 +1,6 @@
 var Post     = require('../models/post.js');
 var User     = require('../models/user.js');
-var siteConf = require('../config/siteConfig.js');
+var siteConf = require('../config/siteTexts.js');
 
 // find all post in database, render admin homepage
 exports.getAdminHome = function(req, res){
