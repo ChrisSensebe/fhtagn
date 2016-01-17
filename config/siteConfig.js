@@ -20,13 +20,17 @@ var siteConfig = {
                 createdText : 'created : ',
                 authorText  : 'by : '
             }
-
         },
         tagsPage : {
             pageTitle : 'Tags'
         },
         archivesPage : {
-            pageTitle : 'Archives'
+            pageTitle : 'Archives',
+            pageContent : {
+                createdText : 'created : ',
+                authorText  : 'by : ',
+                tagsText    : 'tags : '
+            }
         },
         aboutPage : {
             pageTitle : 'About'

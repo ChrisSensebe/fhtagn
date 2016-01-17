@@ -65,14 +65,26 @@ exports.getTags = function(req ,res){
 };
 // get archives page
 exports.getArchives = function(req ,res){
+    // populate page content
+    var pageContent = {
+        siteTitle : siteConf.site.siteTitle,
+        linkToAdminTitle : siteConf.site.linkToAdminTitle,
+        menuTitles : siteConf.site.menuTitles,
+        pageTitle : siteConf.site.archivesPage.pageTitle,
+        createdText : siteConf.site.archivesPage.pageContent.createdText,
+        authorText : siteConf.site.archivesPage.pageContent.authorText,
+        tagsText : siteConf.site.archivesPage.pageContent.tagsText,
+        footerText : siteConf.site.footerText
+    }
     // find all posts in database, render archives page
     Post.find().sort('-created').exec(function(err, docs){
         if(err){
             return next(err);
         }
+        // add posts to pageContents
+        pageContent.posts = docs;
         res.render('siteViews/archives', {
-            siteConfig : siteConf.site,
-            posts : docs
+            pageContent : pageContent
         });
     });
 };
