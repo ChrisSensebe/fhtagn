@@ -105,6 +105,15 @@ exports.getAbout = function(req, res){
 exports.getLogin = function(req, res){
     // render login page
     res.render('siteViews/login', {
-        siteConfig : siteConf.site,
+        pageContent : {
+            siteTitle : siteConf.site.siteTitle,
+            linkToAdminTitle : siteConf.site.linkToAdminTitle,
+            menuTitles : siteConf.site.menuTitles,
+            pageTitle : siteConf.site.loginPage.pageTitle,
+            labelForUsername : siteConf.site.loginPage.pageContent.labelForUsername,
+            labelForPassword : siteConf.site.loginPage.pageContent.labelForPassword,
+            loginButtonText : siteConf.site.loginPage.pageContent.loginButtonText,
+            footerText : siteConf.site.footerText
+        }
     });
 };

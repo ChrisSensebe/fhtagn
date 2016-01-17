@@ -4,10 +4,10 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header #{pageTitle}
+                h2.page-header #{pageContent.pageTitle}
                 form(method="post" action="/login")
-                    label(for="username") username
+                    label(for="username") #{pageContent.labelForUSername}
                     input(class="form-control" id="username" name="username" required)
-                    label(for="password") Password
+                    label(for="password") #{pageContent.labelForPassword}
                     input(class="form-control" id="password" name="password" type="password" required)
-                    button.btn.btn-primary.btn-form Login
+                    button.btn.btn-primary.btn-form #{pageContent.loginButtonText}

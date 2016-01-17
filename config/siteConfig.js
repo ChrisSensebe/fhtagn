@@ -36,7 +36,12 @@ var siteConfig = {
             pageTitle : 'About'
         },
         loginPage : {
-            pageTitle : 'Login'
+            pageTitle : 'Login',
+            pageContent : {
+                labelForUsername : 'username',
+                labelForPassword : 'password',
+                loginButtonText : 'login'
+            }
         }
     },
     admin : {
