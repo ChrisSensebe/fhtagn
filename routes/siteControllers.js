@@ -3,14 +3,25 @@ var siteConf = require('../config/siteConfig.js');
 
 // find last ten posts in database, render site homepage
 exports.getHome = function (req, res, next){
+    // populate page content
+    var pageContent = {
+        siteTitle : siteConf.site.siteTitle,
+        linkToAdminTitle : siteConf.site.linkToAdminTitle,
+        menuTitles : siteConf.site.menuTitles,
+        pageTitle : siteConf.site.homePage.pageTitle,
+        createdText : siteConf.site.homePage.pageContent.createdText,
+        authorText : siteConf.site.homePage.pageContent.authorText,
+        tagsText : siteConf.site.homePage.pageContent.tagsText
+    };
+    // fetch 10 last posts from database
     Post.find().sort('-created').limit(10).exec(function(err, docs){
         if(err){
             return next(err);
         }
+        // add posts to page content
+        pageContent.posts = docs;
         res.render('siteViews/index', {
-            title : siteConf.siteConfig.homePage.pageTitle,
-            pageTitle : siteConf.siteConfig.homePage.pageTitle,
-            posts : docs
+            pageContent : pageContent
         });
     });
 };
@@ -18,22 +29,29 @@ exports.getHome = function (req, res, next){
 exports.getPostById = function(req,res, next){
     // get post id from url
     var id = req.params.id;
+    // populate page content
+    var pageContent = {
+        siteTitle : siteConf.site.siteTitle,
+        linkToAdminTitle : siteConf.site.linkToAdminTitle,
+        menuTitles : siteConf.site.menuTitles,
+        createdText : siteConf.site.postPage.pageContent.createdText,
+        authorText : siteConf.site.postPage.pageContent.authorText
+    };
     // find post in database, render post page
     Post.findOne({_id : id}, function(err, doc){
         if(err){
             return next(err);
         }
+        pageContent.post = doc;
         res.render('siteViews/post', {
-            title : siteConf.siteConfig.siteTitle,
-            post : doc
+            pageContent : pageContent
         });
     });
 };
 // get tags page
 exports.getTags = function(req ,res){
     res.render('siteViews/tags', {
-        title : siteConf.siteConfig.siteTitle,
-        pageTitle : siteConf.siteConfig.tagsPage.pageTitle
+        siteConfig : siteConf.site,
     });
 };
 // get archives page
@@ -44,8 +62,7 @@ exports.getArchives = function(req ,res){
             return next(err);
         }
         res.render('siteViews/archives', {
-            title : siteConf.siteConfig.siteTitle,
-            pageTitle : siteConf.siteConfig.archivesPage.pageTitle,
+            siteConfig : siteConf.site,
             posts : docs
         });
     });
@@ -54,15 +71,13 @@ exports.getArchives = function(req ,res){
 exports.getAbout = function(req, res){
     // render about page
     res.render('siteViews/about', {
-        title : siteConf.siteConfig.siteTitle,
-        pageTitle : siteConf.siteConfig.aboutPage.pageTitle
+        siteConfig : siteConf.site,
     });
 };
 // get login page
 exports.getLogin = function(req, res){
     // render login page
     res.render('siteViews/login', {
-        title : siteConf.siteConfig.siteTitle,
-        pageTitle : siteConf.siteConfig.loginPage.pageTitle
+        siteConfig : siteConf.site,
     });
 };

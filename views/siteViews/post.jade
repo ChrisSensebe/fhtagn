@@ -4,7 +4,7 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header #{post.title}
-                p created: #{post.created}
-                p by: #{post.author}
-                p #{post.post}
+                h2.page-header #{pageContent.pageTitle}
+                p #{pageContent.createdText + pageContent.post.created}
+                p #{pageContent.authorText + pageContent.post.author}
+                p #{pageContent.post.post}
