@@ -168,14 +168,13 @@ exports.postSaveNewUser = function(req, res, next){
     // save user in database, set flash messages, redirect to users
     newUser.save(function(err){
         if(err){
-            if(err){
-                req.flash('danger', 'Error saving user in database');
-                return next(err);
-            }
-            req.flash('success', 'User successfully saved');
-            res.redirect('/admin/users');
+            req.flash('danger', 'Error saving user in database');
+            return next(err);
         }
     });
+    // all went well redirect to users
+    req.flash('success', 'User successfully saved');
+    res.redirect('/admin/users');
 };
 // find user in database, update user, redirect to users page
 exports.postSaveUser = function(req, res, next){
