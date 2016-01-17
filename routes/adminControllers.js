@@ -153,7 +153,7 @@ exports.getUserById = function(req, res, next){
     });
 };
 // save new user in database, redirect to users page
-exports.postSaveNewUser = function(req, res){
+exports.postSaveNewUser = function(req, res, next){
     // get user info from form
     var username = req.body.username;
     var email    = req.body.email;
@@ -210,8 +210,18 @@ exports.postSaveUser = function(req, res, next){
     });
 };
 // del user from database, redirect to users
-exports.postDelUser = function(req, res){
-    res.redirect('/admin/users');
+exports.postDelUser = function(req, res, next){
+    // get user id
+    var userId = req.body.delUser;
+    // delete user from database
+    User.remove({_id : userId}, function(err){
+        if(err){
+            req.flash('danger', 'Error deleting user from database');
+            return next(err);
+        }
+        req.flash('succes', 'User succesfully deleted');
+        res.redirect('/admin/users');
+    });
 };
 // render files page
 exports.getFiles = function(req, res){
