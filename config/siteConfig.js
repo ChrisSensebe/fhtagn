@@ -6,6 +6,7 @@ var siteConfig = {
         siteTitle : 'Fhtagn',
         menuTitles : ['home', 'tags', 'archives', 'about'],
         linkToAdminTitle : 'Admin',
+        footerText : 'Fhtagn',
         homePage : {
             pageTitle : 'home',
             pageContent : {

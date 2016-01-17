@@ -11,7 +11,8 @@ exports.getHome = function (req, res, next){
         pageTitle : siteConf.site.homePage.pageTitle,
         createdText : siteConf.site.homePage.pageContent.createdText,
         authorText : siteConf.site.homePage.pageContent.authorText,
-        tagsText : siteConf.site.homePage.pageContent.tagsText
+        tagsText : siteConf.site.homePage.pageContent.tagsText,
+        footerText : siteConf.site.footerText
     };
     // fetch 10 last posts from database
     Post.find().sort('-created').limit(10).exec(function(err, docs){
@@ -35,7 +36,8 @@ exports.getPostById = function(req,res, next){
         linkToAdminTitle : siteConf.site.linkToAdminTitle,
         menuTitles : siteConf.site.menuTitles,
         createdText : siteConf.site.postPage.pageContent.createdText,
-        authorText : siteConf.site.postPage.pageContent.authorText
+        authorText : siteConf.site.postPage.pageContent.authorText,
+        footerText : siteConf.site.footerText
     };
     // find post in database, render post page
     Post.findOne({_id : id}, function(err, doc){
@@ -56,7 +58,8 @@ exports.getTags = function(req ,res){
             siteTitle : siteConf.site.siteTitle,
             linkToAdminTitle : siteConf.site.linkToAdminTitle,
             menuTitles : siteConf.site.menuTitles,
-            pageTitle : siteConf.site.tagsPage.pageTitle
+            pageTitle : siteConf.site.tagsPage.pageTitle,
+            footerText : siteConf.site.footerText
         }
     });
 };
