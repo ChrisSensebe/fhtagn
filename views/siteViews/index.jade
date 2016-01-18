@@ -4,10 +4,10 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header #{pageContent.page.pageTilte}
-                - each post in pageContent.page.posts
+                h2.page-header #{page.pageTilte}
+                - each post in page.posts
                     h3
                         a(href="/post/#{post._id}")= post.title
-                    p #{pageContent.page.createdText + post.created}
-                    p #{pageContent.page.authorText + post.author}
-                    p #{pageContent.page.tagsText + post.tags}
+                    p #{page.createdText + post.created}
+                    p #{page.authorText + post.author}
+                    p #{page.tagsText + post.tags}
