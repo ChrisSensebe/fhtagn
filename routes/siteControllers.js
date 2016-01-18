@@ -1,18 +1,13 @@
-var Post      = require('../models/post.js');
-var siteTexts = require('../config/siteTexts.js');
+var Post       = require('../models/post.js');
+var siteLayout = require('../config/siteLayout.js');
+var page       = require('../config/pages.js');
 
 // find last ten posts in database, render site homepage
 exports.getHome = function (req, res, next){
     // populate page content
     var pageContent = {
-        siteTitle : siteTexts.siteTitle,
-        linkToAdminTitle : siteTexts.linkToAdminTitle,
-        menuTitles : siteTexts.menuTitles,
-        pageTitle : siteTexts.homePage.pageTitle,
-        createdText : siteTexts.homePage.pageContent.createdText,
-        authorText : siteTexts.homePage.pageContent.authorText,
-        tagsText : siteTexts.homePage.pageContent.tagsText,
-        footerText : siteTexts.footerText
+        siteLayout : siteLayout,
+        page : page.homePage
     };
     // fetch 10 last posts from database
     Post.find().sort('-created').limit(10).exec(function(err, docs){
@@ -20,7 +15,7 @@ exports.getHome = function (req, res, next){
             return next(err);
         }
         // add posts to page content
-        pageContent.posts = docs;
+        pageContent.page.posts = docs;
         res.render('siteViews/index', {
             pageContent : pageContent
         });
@@ -32,12 +27,8 @@ exports.getPostById = function(req,res, next){
     var id = req.params.id;
     // populate page content
     var pageContent = {
-        siteTitle : siteTexts.siteTitle,
-        linkToAdminTitle : siteTexts.linkToAdminTitle,
-        menuTitles : siteTexts.menuTitles,
-        createdText : siteTexts.postPage.pageContent.createdText,
-        authorText : siteTexts.postPage.pageContent.authorText,
-        footerText : siteTexts.footerText
+        siteLayout :siteLayout,
+        page : page.postPage
     };
     // find post in database, render post page
     Post.findOne({_id : id}, function(err, doc){
@@ -45,7 +36,7 @@ exports.getPostById = function(req,res, next){
             return next(err);
         }
         // add post to page content
-        pageContent.post = doc;
+        pageContent.page.post = doc;
         res.render('siteViews/post', {
             pageContent : pageContent
         });
