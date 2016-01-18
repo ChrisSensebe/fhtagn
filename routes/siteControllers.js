@@ -1,6 +1,6 @@
 var Post       = require('../models/post.js');
 var siteLayout = require('../config/siteLayout.js');
-var pages      = require('../config/pages.js');
+var pages      = require('../config/sitePages.js');
 
 // find last ten posts in database, render site homepage
 exports.getHome = function (req, res, next){
