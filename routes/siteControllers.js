@@ -75,7 +75,7 @@ exports.getArchives = function(req ,res){
         authorText : siteTexts.archivesPage.pageContent.authorText,
         tagsText : siteTexts.archivesPage.pageContent.tagsText,
         footerText : siteTexts.footerText
-    }
+    };
     // find all posts in database, render archives page
     Post.find().sort('-created').exec(function(err, docs){
         if(err){
