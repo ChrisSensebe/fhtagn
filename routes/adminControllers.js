@@ -259,13 +259,13 @@ exports.postDelFile = function(req, res){
     res.redirect('/admin/files');
 };
 // render theme page
-exports.getTheme = function(req, res){
+exports.getSettings = function(req, res){
     res.render('adminViews/settings', {
         adminLayout : adminLayout,
         page : adminPages.themePage
     });
 };
 // save theme in db, redirect to them
-exports.postSaveTheme = function(req, res){
+exports.postSaveSettings = function(req, res){
     res.redirect('/admin/settings');
 };

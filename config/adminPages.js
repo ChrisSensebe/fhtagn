@@ -13,7 +13,11 @@ module.exports = {
         newPostButtonText : 'new post'
     },
     newPostPage : {
-        pageTitle : 'New Post'
+        pageTitle : 'New Post',
+        labelForPostTitle : 'Post title',
+        labelForPost : 'Post',
+        labelForTags : 'Tags',
+        saveButtonText : 'Save Post'
     },
     postPage : {
         pageTilte : ''

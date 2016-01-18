@@ -4,12 +4,12 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header  #{pageTitle}
+                h2.page-header  #{page.pageTitle}
                 form(method="post" action="/admin/saveNewPost")
-                    label(for="title") Title
+                    label(for="title") #{page.labelForPostTitle}
                     input(id="title" name="title" class="form-control" required)
-                    label(for="post") Post
+                    label(for="post") #{page.labelForPost}
                     textarea(id="post" name="post" class="form-control text-form" required)
-                    label(for="tags") tags
+                    label(for="tags") #{page.labelForTags}
                     input(id="tags" name="tags" class="form-control")
-                    button.btn.btn-primary.btn-form Save
+                    button.btn.btn-primary.btn-form #{page.saveButtonText}
