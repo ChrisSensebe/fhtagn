@@ -4,22 +4,22 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header #{pageTitle}
-        each post in posts
+                h2.page-header #{page.pageTitle}
+        each post in page.posts
             .row
                 .col-md-12
                     h3= post.title
-                    p= "created : " + post.created
-                    p= "updated : " + post.updated
-                    p= "by : " + post.author
-                    p= "tags : " + post.tags
+                    p #{page.dateCreatedText + post.created}
+                    p #{page.dateUpdatedText + post.updated}
+                    p #{page.authorText + post.author}
+                    p #{page.tagsText + post.tags}
                     p
-                        a(href="admin/post/#{post.id}" class="btn btn-primary") Edit post
+                        a(href="admin/post/#{post.id}" class="btn btn-primary") #{page.editPostButtonText}
                     p
                         form(method="post" action="/admin/delPost")
                             input(type="hidden" id="postId" name="postId" value="#{post.id}")
-                            button.btn.btn-danger Delete post
+                            button.btn.btn-danger #{page.deletePostButtonText}
         .row
             .col-md-12
                 p
-                    a(href="admin/newPost") New post
+                    a(href="admin/newPost" class="btn btn-primary") #{page.newPostButtonText}

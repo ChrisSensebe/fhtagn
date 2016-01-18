@@ -3,7 +3,14 @@
  */
 module.exports = {
     homePage : {
-        pageTitle : 'Posts'
+        pageTitle : 'Admin',
+        dateCreatedText : 'created : ',
+        dateUpdatedText : 'updated : ',
+        authorText : 'by : ',
+        tagsText : 'tags : ',
+        editPostButtonText : 'edit post',
+        deletePostButtonText : 'delete post',
+        newPostButtonText : 'new post'
     },
     newPostPage : {
         pageTitle : 'New Post'

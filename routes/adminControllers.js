@@ -1,18 +1,23 @@
-var Post     = require('../models/post.js');
-var User     = require('../models/user.js');
-var siteConf = require('../config/sitePages.js');
+var Post        = require('../models/post.js');
+var User        = require('../models/user.js');
+var adminLayout = require('../config/adminLayout.js');
+var adminPages  = require('../config/adminPages.js');
 
 // find all post in database, render admin homepage
-exports.getAdminHome = function(req, res){
+exports.getAdminHome = function(req, res, next){
+    // page content
+    var pageContent = {
+        adminLayout : adminLayout,
+        page : adminPages.homePage
+    };
+    // find all posts in database
     Post.find().sort('-created').exec(function(err, docs){
         if(err){
             return next(err);
         }
-        res.render('adminViews/adminHome', {
-            title : siteConf.adminConfig.siteTitle,
-            pageTitle : siteConf.adminConfig.homePage.pageTitle,
-            posts : docs
-        });
+        // add posts to page content, render page
+        pageContent.page.posts = docs;
+        res.render('adminViews/adminHome', pageContent);
     });
 };
 // set goodbye flash message, log user out, redirect to site homepage
