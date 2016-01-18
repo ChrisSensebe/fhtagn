@@ -46,11 +46,8 @@ exports.getPostById = function(req,res, next){
 exports.getTags = function(req ,res){
     res.render('siteViews/tags', {
         pageContent : {
-            siteTitle : siteTexts.siteTitle,
-            linkToAdminTitle : siteTexts.linkToAdminTitle,
-            menuTitles : siteTexts.menuTitles,
-            pageTitle : siteTexts.tagsPage.pageTitle,
-            footerText : siteTexts.footerText
+            siteLayout : siteLayout,
+            page : page.tagsPage
         }
     });
 };
