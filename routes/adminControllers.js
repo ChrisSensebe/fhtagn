@@ -29,8 +29,8 @@ exports.getLogout = function(req, res){
 // render create newpost page
 exports.getNewPost = function(req, res){
     res.render('adminViews/createNewPost', {
-        title : siteConf.adminConfig.siteTitle,
-        pageTitle : siteConf.adminConfig.newPostPage.pageTitle
+        adminLayout : adminLayout,
+        page : adminPages.newPostPage
     });
 };
 // save new post in database
@@ -64,15 +64,19 @@ exports.postNewPost = function(req, res, next){
 exports.getEditPostById = function(req ,res, next){
     // get post id from form
     var id = req.params.id;
+    // page content
+    var pageContent = {
+        adminLayout : adminLayout,
+        page : adminPages.postPage
+    };
     // find post in database, render edit post page
     Post.findOne({_id : id}, function(err, doc){
         if(err){
             return next(err);
         }
-        res.render('adminViews/editPost', {
-            title : siteConf.adminConfig.siteTitle,
-            post : doc
-        });
+        // add doc to page content
+        pageContent.page.post = doc;
+        res.render('adminViews/editPost', pageContent);
     });
 };
 // save post in database
@@ -122,39 +126,46 @@ exports.postDelPost = function(req, res, next){
 };
 // find users in database, render users page
 exports.getUsers = function(req, res, next){
+    // page content
+    var pageContent = {
+        adminLayout : adminLayout,
+        page : adminPages.usersPage
+    };
     // find all users in database, render users page
     User.find().exec(function(err, docs){
         if(err){
             return next(err);
         }
-        res.render('adminViews/users', {
-            title : siteConf.adminConfig.siteTitle,
-            pageTitle : siteConf.adminConfig.usersPage.pageTitle,
-            users : docs
-        });
+        // add users to page content, render page
+        pageContent.page.users = docs;
+        res.render('adminViews/users', pageContent);
     });
 };
 // render new user page
 exports.getNewUser = function(req, res){
     // render new user page
     res.render('adminViews/newUser', {
-        title : siteConf.adminConfig.siteTitle,
-        pageTitle : siteConf.adminConfig.newUserPage.pageTitle
+        adminLayout : adminLayout,
+        page : adminPages.newUserPage
     });
 };
 // get user in database, render user page
 exports.getUserById = function(req, res, next){
     // get user id from url
     var userId = req.params.id;
+    // page content
+    var pageContent = {
+        adminLayout : adminLayout,
+        page : adminPages.userPage
+    }
     // find user in database, render edit user page
     User.findOne({_id : userId}, function(err, doc){
         if(err){
             return next(err);
         }
-        res.render('adminViews/user', {
-            title : siteConf.adminConfig.siteTitle,
-            user : doc
-        });
+        // add user to page content, render page
+        pageContent.page.user = doc;
+        res.render('adminViews/user', pageContent);
     });
 };
 // save new user in database, redirect to users page
@@ -235,8 +246,8 @@ exports.postDelUser = function(req, res, next){
 // render files page
 exports.getFiles = function(req, res){
     res.render('adminViews/files', {
-        title : siteConf.adminConfig.siteTitle,
-        pageTitle : siteConf.adminConfig.filesPage.pageTilte
+        adminLayout : adminLayout,
+        page : adminPages.filesPage
     });
 };
 // upload file, redirect to files
@@ -250,8 +261,8 @@ exports.postDelFile = function(req, res){
 // render theme page
 exports.getTheme = function(req, res){
     res.render('adminViews/theme', {
-        title : siteConf.adminConfig.siteTitle,
-        pageTitle : siteConf.adminConfig.themePage.pageTitle
+        adminLayout : adminLayout,
+        page : adminPages.themePage
     });
 };
 // save theme in db, redirect to them
