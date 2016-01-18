@@ -260,12 +260,12 @@ exports.postDelFile = function(req, res){
 };
 // render theme page
 exports.getTheme = function(req, res){
-    res.render('adminViews/theme', {
+    res.render('adminViews/settings', {
         adminLayout : adminLayout,
         page : adminPages.themePage
     });
 };
 // save theme in db, redirect to them
 exports.postSaveTheme = function(req, res){
-    res.redirect('/admin/theme');
+    res.redirect('/admin/settings');
 };
