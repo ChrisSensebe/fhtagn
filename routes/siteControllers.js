@@ -16,9 +16,7 @@ exports.getHome = function (req, res, next){
         }
         // add posts to page content
         pageContent.page.posts = docs;
-        res.render('siteViews/index', {
-            pageContent : pageContent
-        });
+        res.render('siteViews/index', pageContent);
     });
 };
 // get post by id
@@ -37,18 +35,14 @@ exports.getPostById = function(req,res, next){
         }
         // add post to page content
         pageContent.page.post = doc;
-        res.render('siteViews/post', {
-            pageContent : pageContent
-        });
+        res.render('siteViews/post', pageContent);
     });
 };
 // get tags page
 exports.getTags = function(req ,res){
     res.render('siteViews/tags', {
-        pageContent : {
-            siteLayout : siteLayout,
-            page : pages.tagsPage
-        }
+        siteLayout : siteLayout,
+        page : pages.tagsPage
     });
 };
 // get archives page
@@ -65,28 +59,22 @@ exports.getArchives = function(req ,res){
         }
         // add posts to pageContents
         pageContent.page.posts = docs;
-        res.render('siteViews/archives', {
-            pageContent : pageContent
-        });
+        res.render('siteViews/archives', pageContent);
     });
 };
 // get about page
 exports.getAbout = function(req, res){
     // render about page
     res.render('siteViews/about', {
-        pageContent : {
-            siteLayout : siteLayout,
-            page : pages.aboutPage
-        }
+        siteLayout : siteLayout,
+        page : pages.aboutPage
     });
 };
 // get login page
 exports.getLogin = function(req, res){
     // render login page
     res.render('siteViews/login', {
-        pageContent : {
-            siteLayout : siteLayout,
-            page : pages.loginPage
-        }
+        siteLayout : siteLayout,
+        page : pages.loginPage
     });
 };
