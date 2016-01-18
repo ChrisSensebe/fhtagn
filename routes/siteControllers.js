@@ -85,14 +85,8 @@ exports.getLogin = function(req, res){
     // render login page
     res.render('siteViews/login', {
         pageContent : {
-            siteTitle : siteTexts.siteTitle,
-            linkToAdminTitle : siteTexts.linkToAdminTitle,
-            menuTitles : siteTexts.menuTitles,
-            pageTitle : siteTexts.loginPage.pageTitle,
-            labelForUsername : siteTexts.loginPage.pageContent.labelForUsername,
-            labelForPassword : siteTexts.loginPage.pageContent.labelForPassword,
-            loginButtonText : siteTexts.loginPage.pageContent.loginButtonText,
-            footerText : siteTexts.footerText
+            siteLayout : siteLayout,
+            page : pages.loginPage
         }
     });
 };
