@@ -17,21 +17,17 @@ module.exports = {
     },
     archivesPage : {
         pageTitle : 'Archives',
-        pageContent : {
-            createdText : 'created : ',
-            authorText  : 'by : ',
-            tagsText    : 'tags : '
-        }
+        createdText : 'created : ',
+        authorText  : 'by : ',
+        tagsText    : 'tags : '
     },
     aboutPage : {
         pageTitle : 'About'
     },
     loginPage : {
         pageTitle : 'Login',
-        pageContent : {
-            labelForUsername : 'username',
-            labelForPassword : 'password',
-            loginButtonText : 'login'
-        }
+        labelForUsername : 'username',
+        labelForPassword : 'password',
+        loginButtonText : 'login'
     }
 }

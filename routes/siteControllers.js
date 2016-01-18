@@ -1,13 +1,13 @@
 var Post       = require('../models/post.js');
 var siteLayout = require('../config/siteLayout.js');
-var page       = require('../config/pages.js');
+var pages      = require('../config/pages.js');
 
 // find last ten posts in database, render site homepage
 exports.getHome = function (req, res, next){
     // populate page content
     var pageContent = {
         siteLayout : siteLayout,
-        page : page.homePage
+        page : pages.homePage
     };
     // fetch 10 last posts from database
     Post.find().sort('-created').limit(10).exec(function(err, docs){
@@ -28,7 +28,7 @@ exports.getPostById = function(req,res, next){
     // populate page content
     var pageContent = {
         siteLayout :siteLayout,
-        page : page.postPage
+        page : pages.postPage
     };
     // find post in database, render post page
     Post.findOne({_id : id}, function(err, doc){
@@ -47,7 +47,7 @@ exports.getTags = function(req ,res){
     res.render('siteViews/tags', {
         pageContent : {
             siteLayout : siteLayout,
-            page : page.tagsPage
+            page : pages.tagsPage
         }
     });
 };
@@ -55,14 +55,8 @@ exports.getTags = function(req ,res){
 exports.getArchives = function(req ,res){
     // populate page content
     var pageContent = {
-        siteTitle : siteTexts.siteTitle,
-        linkToAdminTitle : siteTexts.linkToAdminTitle,
-        menuTitles : siteTexts.menuTitles,
-        pageTitle : siteTexts.archivesPage.pageTitle,
-        createdText : siteTexts.archivesPage.pageContent.createdText,
-        authorText : siteTexts.archivesPage.pageContent.authorText,
-        tagsText : siteTexts.archivesPage.pageContent.tagsText,
-        footerText : siteTexts.footerText
+        siteLayout : siteLayout,
+        page : pages.archivesPage
     };
     // find all posts in database, render archives page
     Post.find().sort('-created').exec(function(err, docs){
@@ -70,7 +64,7 @@ exports.getArchives = function(req ,res){
             return next(err);
         }
         // add posts to pageContents
-        pageContent.posts = docs;
+        pageContent.page.posts = docs;
         res.render('siteViews/archives', {
             pageContent : pageContent
         });
@@ -81,11 +75,8 @@ exports.getAbout = function(req, res){
     // render about page
     res.render('siteViews/about', {
         pageContent : {
-            siteTitle : siteTexts.siteTitle,
-            linkToAdminTitle : siteTexts.linkToAdminTitle,
-            menuTitles : siteTexts.menuTitles,
-            pageTitle : siteTexts.aboutPage.pageTitle,
-            footerText : siteTexts.footerText
+            siteLayout : siteLayout,
+            page : pages.aboutPage
         }
     });
 };
