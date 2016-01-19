@@ -12,6 +12,7 @@ var flash                = require('connect-flash');
 var config               = require('./config/appConfig.js');
 var attachAuthentication = require('./middlewares/attachAuthentication.js');
 var setFlash             = require('./middlewares/setFlash');
+var csurf                = require('csurf');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(session({
     resave : true,
     saveUninitialized : true
 }));
+app.use(csurf())
 app.use(passport.initialize());
 // pass passport for configuration
 require('./config/passportConfig.js')(passport);
