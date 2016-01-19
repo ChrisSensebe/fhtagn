@@ -4,18 +4,18 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header #{pageTitle}
-                - each user in users
+                h2.page-header #{page.pageTilte}
+                - each user in page.users
                     h3 #{user.username}
                     p= user.email
                     p= user.role
                     p
-                        a(href="/admin/user/#{user.id}" class="btn btn-primary") Edit user
+                        a(href="/admin/user/#{user.id}" class="btn btn-primary") #{page.editUserButtonText}
                     p
                         form(method="post" action="/admin/delUser")
                             input(type="hidden" id="delUser" name="delUser" value="#{user.id}")
-                            button.btn.btn-danger Delete user
+                            button.btn.btn-danger #{page.deleteUserButtonText}
     .container
         .row
             .col-md-12
-                a(href="/admin/newUser") create new user
+                a(href="/admin/newUser" class="btn btn-default") #{page.newUserButtonText}

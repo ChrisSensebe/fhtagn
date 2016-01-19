@@ -25,7 +25,12 @@ module.exports = {
         labelForTags : 'Tags',
         saveButtonText : 'Save post'
     },
-    usersPage : {},
+    usersPage : {
+        pageTitle : 'Users',
+        editUserButtonText : 'Edit user',
+        deleteUserButtonText : 'Delete user',
+        newUserButtonText : 'Create new user'
+    },
     newUserPage : {
         pageTitle : 'New user'
     },
