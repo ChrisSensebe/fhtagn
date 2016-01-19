@@ -17,10 +17,13 @@ module.exports = {
         labelForPostTitle : 'Post title',
         labelForPost : 'Post',
         labelForTags : 'Tags',
-        saveButtonText : 'Save Post'
+        saveButtonText : 'Save post'
     },
     postPage : {
-        pageTilte : ''
+        labelForPostTitle : 'Post title',
+        labelForPost : 'Post',
+        labelForTags : 'Tags',
+        saveButtonText : 'Save post'
     },
     usersPage : {},
     newUserPage : {

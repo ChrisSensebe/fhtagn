@@ -14,7 +14,7 @@ block content
                     p #{page.authorText + post.author}
                     p #{page.tagsText + post.tags}
                     p
-                        a(href="admin/post/#{post.id}" class="btn btn-primary") #{page.editPostButtonText}
+                        a(href="/admin/post/#{post.id}" class="btn btn-primary") #{page.editPostButtonText}
                     p
                         form(method="post" action="/admin/delPost")
                             input(type="hidden" id="postId" name="postId" value="#{post.id}")

@@ -4,13 +4,13 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header  #{post.title}
+                h2.page-header  #{page.post.title}
                 form(method="post" action="/admin/savePost")
-                    input(id="id" name="id" value="#{post._id}" type="hidden")
-                    label(for="title") Title
-                    input(id="title" name="title" class="form-control" value="#{post.title}" required)
-                    label(for="post") Post
-                    textarea(id="post" name="post" class="form-control text-form" required)= post.post
-                    label(for="tags") tags
-                    input(id="tags" name="tags" class="form-control" value="#{post.tags}")
-                    button.btn.btn-primary.btn-form Save
+                    input(id="id" name="id" value="#{page.post._id}" type="hidden")
+                    label(for="title") #{page.labelForPostTitle}
+                    input(id="title" name="title" class="form-control" value="#{page.post.title}" required)
+                    label(for="post") #{page.labelForPost}
+                    textarea(id="post" name="post" class="form-control text-form" required)= page.post.post
+                    label(for="tags") #{page.labelForPost}
+                    input(id="tags" name="tags" class="form-control" value="#{page.post.tags}")
+                    button.btn.btn-primary.btn-form #{page.saveButtonText}
