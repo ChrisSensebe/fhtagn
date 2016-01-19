@@ -57,6 +57,9 @@ module.exports = {
         uploadFileButtonText : 'Upload'
     },
     themePage : {
-        pageTitle : 'Site config'
+        pageTitle : 'Site config',
+        labelForSelectTheme : 'Select theme',
+        labelForSelectHeaderImg : 'Select header image',
+        selectThemeButton : 'Select Theme'
     }
 }
