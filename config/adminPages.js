@@ -41,7 +41,15 @@ module.exports = {
         rolesTexts : ['admin', 'editor', 'contributor', 'observer', 'inactive'],
         saveUserButtonText : 'Save user'
     },
-    userPage : {},
+    userPage : {
+        labelForUsername : 'Username',
+        labelForEmail : 'Email',
+        labelForPassword : 'Password',
+        labelForRepeatPassword : 'Repeat password',
+        labelForRole : 'Role',
+        rolesTexts : ['admin', 'editor', 'contributor', 'observer', 'inactive'],
+        saveUserButtonText : 'Save user'
+    },
     filesPage : {
         pageTilte : 'Files'
     },

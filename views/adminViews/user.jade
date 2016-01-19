@@ -4,22 +4,22 @@ block content
 	.container
 			.row
 				.col-md-12
-					h2.page-header #{user.username}
+					h2.page-header #{page.user.username}
 					form(method="post" action="/admin/saveUser")
-						input(id="id" name="id" value="#{user._id}" type="hidden")
-						label(for="username") Username
-						input(class="form-control" id="username" name="username"  value="#{user.username}" required)
-						label(for="email") Email
-						input(class="form-control" id="email" name="email" type="email" value="#{user.email}" required)
-						label(for="password") Password
+						input(id="id" name="id" value="#{page.user._id}" type="hidden")
+						label(for="username") #{page.labelForUsername}
+						input(class="form-control" id="username" name="username"  value="#{page.user.username}" required)
+						label(for="email") #{page.labelForEmail}
+						input(class="form-control" id="email" name="email" type="email" value="#{page.user.email}" required)
+						label(for="password") #{page.labelForPassword}
 						input(class="form-control" id="password" name="password" type="password")
-						label(for="passwordRepeat") Repeat password
+						label(for="passwordRepeat")  #{page.labelForRepeatPassword}
 						input(class="form-control" id="passwordRepeat" name="passwordRepeat" type="password")
-						label(for="role") Role
+						label(for="role") #{page.labelForRole}
 						select(id="role" name="role" class="form-control" required)
-							option(value="admin") admin
-							option(value="editor") editor
-							option(value="contributor") contributor
-							option(value="observer") observer
-							option(value="inactive") inactive
-						button.btn.btn-primary.btn-form Save user
+							option(value="admin") #{page.rolesTexts[0]}
+							option(value="editor") #{page.rolesTexts[1]}
+							option(value="contributor") #{page.rolesTexts[2]}
+							option(value="observer") #{page.rolesTexts[3]}
+							option(value="inactive") #{page.rolesTexts[4]}
+						button.btn.btn-primary.btn-form #{page.saveUserButtonText}
