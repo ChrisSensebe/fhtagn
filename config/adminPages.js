@@ -32,7 +32,14 @@ module.exports = {
         newUserButtonText : 'Create new user'
     },
     newUserPage : {
-        pageTitle : 'New user'
+        pageTitle : 'New user',
+        labelForUsername : 'Username',
+        labelForEmail : 'Email',
+        labelForPassword : 'Password',
+        labelForRepeatPassword : 'Repeat password',
+        labelForRole : 'Role',
+        rolesTexts : ['admin', 'editor', 'contributor', 'observer', 'inactive'],
+        saveUserButtonText : 'Save user'
     },
     userPage : {},
     filesPage : {
