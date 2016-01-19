@@ -35,7 +35,8 @@ app.use(session({
     resave : true,
     saveUninitialized : true
 }));
-app.use(csurf())
+app.use(csurf());
+app.use(require('./middlewares/attachCrsfToken.js'));
 app.use(passport.initialize());
 // pass passport for configuration
 require('./config/passportConfig.js')(passport);
