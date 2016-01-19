@@ -51,7 +51,10 @@ module.exports = {
         saveUserButtonText : 'Save user'
     },
     filesPage : {
-        pageTilte : 'Files'
+        pageTilte : 'Files',
+        deleteFileButtonText : 'Delete file',
+        labelForFileUpload : 'Select file to upload',
+        uploadFileButtonText : 'Upload'
     },
     themePage : {
         pageTitle : 'Site config'
