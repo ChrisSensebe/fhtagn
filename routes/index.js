@@ -18,7 +18,7 @@ router.get('/archives', siteControllers.getArchives);
 router.get('/about',    siteControllers.getAbout);
 router.get('/login',    siteControllers.getLogin);
 router.post('/login',   passport.authenticate('local-login', {
-    successRedirect  : '/admin/',
+    successRedirect : '/admin/',
     failureRedirect : '/login',
     failureFlash    : true
 }));
