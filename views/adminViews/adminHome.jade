@@ -17,6 +17,7 @@ block content
                         a(href="/admin/post/#{post.id}" class="btn btn-primary") #{page.editPostButtonText}
                     p
                         form(method="post" action="/admin/delPost")
+                            include partials/crsfToken
                             input(type="hidden" id="postId" name="postId" value="#{post.id}")
                             button.btn.btn-danger #{page.deletePostButtonText}
         .row
