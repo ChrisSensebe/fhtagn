@@ -6,6 +6,7 @@ block content
             .col-md-12
                 h2.page-header  #{page.pageTitle}
                 form(method="post" action="/admin/saveNewPost")
+                    include partials/crsfToken
                     label(for="title") #{page.labelForPostTitle}
                     input(id="title" name="title" class="form-control" required)
                     label(for="post") #{page.labelForPost}
