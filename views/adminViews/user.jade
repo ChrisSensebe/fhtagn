@@ -6,6 +6,7 @@ block content
 				.col-md-12
 					h2.page-header #{page.user.username}
 					form(method="post" action="/admin/saveUser")
+						include partials/csrfToken
 						input(id="id" name="id" value="#{page.user._id}" type="hidden")
 						label(for="username") #{page.labelForUsername}
 						input(class="form-control" id="username" name="username"  value="#{page.user.username}" required)
