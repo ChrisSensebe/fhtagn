@@ -6,6 +6,7 @@ block content
 				.col-md-12
 					h2.page-header #{page.pageTitle}
 					form(method="post" action="/admin/siteSettings")
+						include partials/csrfToken
 						label(for="bootstrapTheme") #{page.labelForSelectTheme}
 						select(class="form-control" id="bootstrapTheme" name="bootstrapTheme" required)
 							option(value="theme1") Theme 1
