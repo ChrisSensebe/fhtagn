@@ -13,6 +13,7 @@ var config               = require('./config/appConfig.js');
 var attachAuthentication = require('./middlewares/attachAuthentication.js');
 var setFlash             = require('./middlewares/setFlash');
 var csurf                = require('csurf');
+var helmet               = require('helmet');
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use(setFlash);
 app.use(attachAuthentication);
 app.use(csurf());
 app.use(require('./middlewares/attachCrsfToken.js'));
+app.use(helmet());
 
 app.use('/', routes);
 
