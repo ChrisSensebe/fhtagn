@@ -6,7 +6,7 @@ block content
             .col-md-12
                 h2.page-header #{page.pageTitle}
                 form(method="post" action="/login")
-                    include partials/crsfToken
+                    include partials/csrfToken
                     label(for="username") #{page.labelForUsername}
                     input(class="form-control" id="username" name="username" required)
                     label(for="password") #{page.labelForPassword}
