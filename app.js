@@ -28,15 +28,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger(config.environment));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended : false }));
 app.use(cookieParser());
 app.use(session({
     secret : config.sessionSecret,
     resave : true,
     saveUninitialized : true
 }));
-app.use(csurf({ cookie : true}));
-app.use(require('./middlewares/attachCrsfToken.js'));
 app.use(passport.initialize());
 // pass passport for configuration
 require('./config/passportConfig.js')(passport);
@@ -44,6 +42,8 @@ app.use(passport.session());
 app.use(flash());
 app.use(setFlash);
 app.use(attachAuthentication);
+app.use(csurf());
+app.use(require('./middlewares/attachCrsfToken.js'));
 
 app.use('/', routes);
 
@@ -62,9 +62,9 @@ app.use(function (err, req, res, next) {
         return next(err);
     }
     // handle CSRF token errors here
-    res.status(403)
-    res.send('form tampered with')
-})
+    res.status(403);
+    res.send('form tampered with');
+});
 
 // development error handler
 // will print stacktrace
