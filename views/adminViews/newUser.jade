@@ -6,6 +6,7 @@ block content
             .col-md-12
                 h2.page-header #{page.pageTilte}
                 form(method="post" action="/admin/saveNewUser")
+                    include partials/csrfToken
                     label(for="username") #{page.labelForUsername}
                     input(class="form-control" id="username" name="username" required)
                     label(for="email") #{page.labelForEmail}
