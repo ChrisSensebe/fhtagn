@@ -267,5 +267,5 @@ exports.getSettings = function(req, res){
 };
 // save theme in db, redirect to them
 exports.postSaveSettings = function(req, res){
-    res.redirect('/admin/settings');
+    res.redirect('/admin/siteSettings');
 };
