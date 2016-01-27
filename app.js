@@ -46,6 +46,7 @@ app.use(attachAuthentication);
 app.use(csurf());
 app.use(require('./middlewares/attachCrsfToken.js'));
 app.use(helmet());
+app.use(helmet.csp(config.helmet.csp));
 
 app.use('/', routes);
 
