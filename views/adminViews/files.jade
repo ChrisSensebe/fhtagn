@@ -5,11 +5,8 @@ block content
         .row
             .col-md-12
                 h2.page-header #{pageTitle}
-                    form(method="post" action="/admin/delFile")
+                    form(method="post" action="/admin/upload" enctype="multipart/form-data")
                         include partials/csrfToken
-                        button.btn.btn-primary.btn-form #{page.deleteFileButtonText}
-                        form(method="post" action="/admin/upload")
-                        include partials/csrfToken
-                        label(for="upload") #{page.labelForFileUpload}
-                        input(type="file" name="upload" id="upload" class="form-control" required)
+                        label(for="image") #{page.labelForFileUpload}
+                        input(type="file" name="image" id="image" class="form-control" required)
                         button.btn.btn-primary.btn-form #{page.uploadFileButtonText}
