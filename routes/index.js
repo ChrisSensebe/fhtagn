@@ -9,7 +9,11 @@ var isLogged         = require('../middlewares/isLogged.js');
 
 var multer = require('multer');
 var upload = multer({
-    dest : '../public/images'
+    dest : '../public/images',
+    limits : {
+        fileSize : 1000000,
+        files    : 1
+    }
 });
 
 /**
