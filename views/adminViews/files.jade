@@ -9,4 +9,6 @@ block content
                         include partials/csrfToken
                         label(for="image") #{page.labelForFileUpload}
                         input(type="file" name="image" id="image" class="form-control" required)
+                        label(for="filename") #{page.labelForFileName}
+                        input(type="text" name="fileName" id="fileName" class="form-control" required)
                         button.btn.btn-primary.btn-form #{page.uploadFileButtonText}

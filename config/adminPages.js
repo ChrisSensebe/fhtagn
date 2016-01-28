@@ -54,6 +54,7 @@ module.exports = {
         pageTilte : 'Files',
         deleteFileButtonText : 'Delete file',
         labelForFileUpload : 'Select file to upload',
+        labelForFileName : 'Name your file',
         uploadFileButtonText : 'Upload'
     },
     themePage : {
