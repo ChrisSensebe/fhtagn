@@ -252,6 +252,7 @@ exports.getFiles = function(req, res){
 };
 // upload file, redirect to files
 exports.postUpload = function(req, res){
+    req.flash('success', 'File successfully saved');
     res.redirect('/admin/files');
 };
 // delete file, redirect to files
