@@ -17,7 +17,7 @@ var upload = multer({
 });
 
 /**
- * site routes
+ * site controllers
  */
 
 router.get('/',         siteControllers.getHome);
@@ -33,8 +33,8 @@ router.post('/login',   passport.authenticate('local-login', {
 }));
 
 /**
- * admin routes
- * protected routes user must be logged
+ * admin controllers
+ * protected controllers user must be logged
  */
 
 router.all('/admin/*',             isLogged);

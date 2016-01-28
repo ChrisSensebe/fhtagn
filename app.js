@@ -4,7 +4,7 @@ var favicon              = require('serve-favicon');
 var logger               = require('morgan');
 var cookieParser         = require('cookie-parser');
 var bodyParser           = require('body-parser');
-var routes               = require('./routes/index');
+var routes               = require('./controllers/index');
 var mongoose             = require('mongoose');
 var passport             = require('passport');
 var session              = require('express-session');
@@ -56,8 +56,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-// error handlers
 
 // bad csrf token error handler
 app.use(function (err, req, res, next) {
