@@ -7,6 +7,11 @@ var Post             = require('../models/post.js');
 var passport         = require('passport');
 var isLogged         = require('../middlewares/isLogged.js');
 
+var multer = require('multer');
+var upload = multer({
+    dest : '../public/images'
+});
+
 /**
  * site routes
  */
@@ -44,7 +49,7 @@ router.post('/admin/delPost',      adminControllers.postDelPost);
 router.post('/admin/saveNewUser',  adminControllers.postSaveNewUser);
 router.post('/admin/saveUser',     adminControllers.postSaveUser);
 router.post('/admin/delUser',      adminControllers.postDelUser);
-router.post('/admin/upload',       adminControllers.postUpload);
+router.post('/admin/upload', upload.single('image'), adminControllers.postUpload);
 router.post('/admin/delFile',      adminControllers.postDelFile);
 router.post('/admin/siteSettings', adminControllers.postSaveSettings);
 
