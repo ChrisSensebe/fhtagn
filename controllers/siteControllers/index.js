@@ -4,9 +4,10 @@
 var express = require('express');
 var router  = express.Router();
 
-router.use('/',         require('./homeController.js'));
-router.use('/post',     require('./postController.js'));
-router.use('/tags',     require('./tagController.js'));
-router.use('/archives', require('./archiveController.js'));
+router.use('/',         require('./homeController'));
+router.use('/post',     require('./postController'));
+router.use('/tags',     require('./tagController'));
+router.use('/archives', require('./archiveController'));
+router.use('/about',    require('./aboutController'));
 
 module.exports = router;
