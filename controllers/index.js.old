@@ -1,6 +1,6 @@
 var express          = require('express');
 var router           = express.Router();
-var siteControllers  = require('./siteControllers.js');
+var siteControllers  = require('./siteControllers.js.old');
 var adminControllers = require('./adminControllers.js');
 var User             = require('../models/user.js');
 var Post             = require('../models/post.js');
@@ -20,7 +20,6 @@ var upload = multer({
  * site controllers
  */
 
-router.get('/',         siteControllers.getHome);
 router.get('/post/:id', siteControllers.getPostById);
 router.get('/tags',     siteControllers.getTags);
 router.get('/archives', siteControllers.getArchives);

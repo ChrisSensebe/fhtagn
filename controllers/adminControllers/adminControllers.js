@@ -1,7 +1,7 @@
-var Post        = require('../models/post.js');
-var User        = require('../models/user.js');
-var adminLayout = require('../config/adminLayout.js');
-var adminPages  = require('../config/adminPages.js');
+var Post        = require('../../models/post.js');
+var User        = require('../../models/user.js');
+var adminLayout = require('../../config/adminLayout.js');
+var adminPages  = require('../../config/adminPages.js');
 
 // find all post in database, render admin homepage
 exports.getAdminHome = function(req, res, next){

@@ -4,7 +4,6 @@ var favicon              = require('serve-favicon');
 var logger               = require('morgan');
 var cookieParser         = require('cookie-parser');
 var bodyParser           = require('body-parser');
-var routes               = require('./controllers/index');
 var mongoose             = require('mongoose');
 var passport             = require('passport');
 var session              = require('express-session');
@@ -48,7 +47,9 @@ app.use(require('./middlewares/attachCrsfToken.js'));
 app.use(helmet());
 app.use(helmet.csp(config.helmet.csp));
 
-app.use('/', routes);
+//controllers
+app.use(require('./controllers/siteControllers/index.js'));
+//app.use(require('./controllers/adminControllers/index.js'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
