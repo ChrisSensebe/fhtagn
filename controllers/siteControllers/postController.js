@@ -7,7 +7,7 @@ var Post       = require('../../models/post.js');
 var siteLayout = require('../../config/siteLayout.js');
 var pages      = require('../../config/sitePages.js');
 
-exports.getPostById = function(req,res, next){
+router.get('/:id', function(req,res, next){
 
     var id = req.params.id;
 
@@ -23,6 +23,6 @@ exports.getPostById = function(req,res, next){
         pageContent.page.post = doc;
         res.render('siteViews/post', pageContent);
     });
-};
+});
 
 module.exports = router;
