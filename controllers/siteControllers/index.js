@@ -4,7 +4,8 @@
 var express = require('express');
 var router  = express.Router();
 
-router.use('/', require('./homeController.js'));
+router.use('/',     require('./homeController.js'));
 router.use('/post', require('./postController.js'));
+router.use('/tags',  require('./tagController.js'));
 
 module.exports = router;
