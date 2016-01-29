@@ -3,31 +3,11 @@ var siteLayout = require('../../config/siteLayout.js');
 var pages      = require('../../config/sitePages.js');
 
 // find last ten posts in database, render site homepage
-exports.getHome = function (req, res, next){
-    // populate page content
-    var pageContent = {
-        siteLayout : siteLayout,
-        page : pages.homePage
-    };
-    // fetch 10 last posts from database
-    Post.find().sort('-created').limit(10).exec(function(err, docs){
-        if(err){
-            return next(err);
-        }
-        // add posts to page content
-        pageContent.page.posts = docs;
-        res.render('siteViews/index', pageContent);
-    });
-};
+
 // get post by id
 
 // get tags page
-exports.getTags = function(req ,res){
-    res.render('siteViews/tags', {
-        siteLayout : siteLayout,
-        page : pages.tagsPage
-    });
-};
+
 // get archives page
 exports.getArchives = function(req ,res){
     // populate page content

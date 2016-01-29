@@ -3,7 +3,6 @@
  */
 var express    = require('express');
 var router     = express.Router();
-var Post       = require('../../models/post.js');
 var siteLayout = require('../../config/siteLayout.js');
 var pages      = require('../../config/sitePages.js');
 
