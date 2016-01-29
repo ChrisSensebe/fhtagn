@@ -49,7 +49,7 @@ app.use(helmet.csp(config.helmet.csp));
 
 //controllers
 app.use(require('./controllers/siteControllers/index.js'));
-//app.use(require('./controllers/adminControllers/index.js'));
+app.use(require('./controllers/adminControllers/index.js'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
