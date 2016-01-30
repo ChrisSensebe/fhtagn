@@ -19,14 +19,15 @@ nav(class="navbar navbar-default navbar-fixed")
                     a(href="/admin/files") #{adminLayout.menuTitles[3]}
                 li
                     a(href="/admin/siteSettings") #{adminLayout.menuTitles[4]}
-            ul(class="nav navbar-nav navbar-right")
-                li(class="dropdown")
-                    a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") #{currentUser.username}
-                        span(class="caret")
-                    ul(class="dropdown-menu")
-                        li
-                            a(href="/") #{adminLayout.dropdownMenuItems[0]}
-                        li
-                            a(href="/admin/logout") #{adminLayout.dropdownMenuItems[1]}
-                        li
-                            a(href="/admin/user") #{adminLayout.dropdownMenuItems[2]}
+            if currentUser
+                ul(class="nav navbar-nav navbar-right")
+                    li(class="dropdown")
+                        a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") #{currentUser.username}
+                            span(class="caret")
+                        ul(class="dropdown-menu")
+                            li
+                                a(href="/") #{adminLayout.dropdownMenuItems[0]}
+                            li
+                                a(href="/admin/logout") #{adminLayout.dropdownMenuItems[1]}
+                            li
+                                a(href="/admin/user") #{adminLayout.dropdownMenuItems[2]}

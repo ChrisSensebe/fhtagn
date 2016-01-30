@@ -4,6 +4,7 @@
 var express = require('express');
 var router  = express.Router();
 
+router.use('/login', require('./loginController'));
 router.use('/admin', require('./adminHomeController'));
 
 module.exports = router;

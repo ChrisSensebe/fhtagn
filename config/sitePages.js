@@ -23,11 +23,5 @@ module.exports = {
     },
     aboutPage : {
         pageTitle : 'About'
-    },
-    loginPage : {
-        pageTitle : 'Login',
-        labelForUsername : 'username',
-        labelForPassword : 'password',
-        loginButtonText : 'login'
     }
 }

@@ -62,5 +62,11 @@ module.exports = {
         labelForSelectTheme : 'Select theme',
         labelForSelectHeaderImg : 'Select header image',
         selectThemeButton : 'Select Theme'
+    },
+    loginPage : {
+        pageTitle : 'Login',
+        labelForUsername : 'username',
+        labelForPassword : 'password',
+        loginButtonText : 'login'
     }
 }
