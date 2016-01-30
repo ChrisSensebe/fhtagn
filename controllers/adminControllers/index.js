@@ -4,8 +4,8 @@
 var express = require('express');
 var router  = express.Router();
 
-router.use('/login', require('./loginController'));
-router.use('/admin', require('./adminHomeController'));
-router.use('/post',  require('./postController'));
+router.use('/admin/login', require('./loginController'));
+router.use('/admin/',      require('./adminHomeController'));
+router.use('/admin/post',  require('./postController'));
 
 module.exports = router;
