@@ -11,12 +11,7 @@ exports.getLogout = function(req, res){
     res.redirect('/');
 };
 // render create newpost page
-exports.getNewPost = function(req, res){
-    res.render('adminViews/createNewPost', {
-        adminLayout : adminLayout,
-        page : adminPages.newPostPage
-    });
-};
+
 // save new post in database
 exports.postNewPost = function(req, res, next){
     // get info from form

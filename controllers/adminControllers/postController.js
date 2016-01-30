@@ -7,7 +7,7 @@ var Post        = require('../../models/post');
 var adminLayout = require('../../config/adminLayout');
 var adminPages  = require('../../config/adminPages');
 
-router.get('/:id', function(req ,res, next){
+router.get('/getPost/:id', function(req ,res, next){
     // get post id from form
     var id = req.params.id;
     // page content
