@@ -6,5 +6,6 @@ var router  = express.Router();
 
 router.use('/login', require('./loginController'));
 router.use('/admin', require('./adminHomeController'));
+router.use('/post',  require('./postController'));
 
 module.exports = router;
