@@ -26,4 +26,11 @@ router.get('/getPost/:id', function(req ,res, next){
     });
 });
 
+router.get('/newPost', function(req, res){
+    res.render('adminviews/createNewPost', {
+        adminLayout : adminLayout,
+        page : adminPages.newPostPage
+    });
+});
+
 module.exports = router;
