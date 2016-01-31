@@ -24,4 +24,12 @@ router.get('/getAll', function(req, res, next){
     });
 });
 
+router.get('/newUser', function(req, res){
+
+    res.render('adminViews/newUser', {
+        adminLayout : adminLayout,
+        page : adminPages.newUserPage
+    });
+});
+
 module.exports = router;

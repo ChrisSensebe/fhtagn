@@ -20,13 +20,7 @@ var adminPages  = require('../../config/adminPages.js');
 // find users in database, render users page
 
 // render new user page
-exports.getNewUser = function(req, res){
-    // render new user page
-    res.render('adminViews/newUser', {
-        adminLayout : adminLayout,
-        page : adminPages.newUserPage
-    });
-};
+
 // get user in database, render user page
 exports.getUserById = function(req, res, next){
     // get user id from url
