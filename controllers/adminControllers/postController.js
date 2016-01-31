@@ -33,4 +33,32 @@ router.get('/newPost', function(req, res){
     });
 });
 
+router.post('/newPost', function(req, res, next){
+
+    var title  = req.body.title;
+    var post   = req.body.post;
+    // need attach authentication
+    var author = req.user.username;
+    var tags   = req.body.tags.split(',');
+
+    var newPost = Post({
+        title   : title,
+        post    : post,
+        author  : author,
+        tags    : tags,
+        created : Date.now(),
+        updated : Date.now()
+    });
+
+    newPost.save(function(err){
+        if(err){
+            req.flash('danger', 'error saving post in database');
+            return next(err);
+        }
+    });
+
+    req.flash('success', 'Post successfully saved.');
+    res.redirect('/admin/');
+});
+
 module.exports = router;

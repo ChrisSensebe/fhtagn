@@ -8,7 +8,7 @@ module.exports = function(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    req.flash('danger', 'You must be logged to do that');
-    res.redirect('/login');
+    req.flash('danger', 'You must login to acces this page');
+    res.redirect('/admin/login');
 
 }
