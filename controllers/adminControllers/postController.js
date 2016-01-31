@@ -37,7 +37,6 @@ router.post('/newPost', function(req, res, next){
 
     var title  = req.body.title;
     var post   = req.body.post;
-    // need attach authentication
     var author = req.user.username;
     var tags   = req.body.tags.split(',');
 
