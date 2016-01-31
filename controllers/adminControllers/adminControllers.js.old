@@ -24,32 +24,7 @@ var adminPages  = require('../../config/adminPages.js');
 // get user in database, render user page
 
 // save new user in database, redirect to users page
-exports.postSaveNewUser = function(req, res, next){
-    // get user info from form
-    var username = req.body.username;
-    var email    = req.body.email;
-    var password = req.body.password;
-    var role     = req.body.role;
-    // create new user
-    var newUser = new User({
-        username     : username,
-        email        : email,
-        passwordHash : password,
-        role         : role,
-        created      : Date.now(),
-        updated      : Date.now()
-    });
-    // save user in database, set flash messages, redirect to users
-    newUser.save(function(err){
-        if(err){
-            req.flash('danger', 'Error saving user in database');
-            return next(err);
-        }
-    });
-    // all went well redirect to users
-    req.flash('success', 'User successfully saved');
-    res.redirect('/admin/users');
-};
+
 // find user in database, update user, redirect to users page
 exports.postSaveUser = function(req, res, next){
     // get user info from form

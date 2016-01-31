@@ -40,4 +40,31 @@ router.get('/newUser', function(req, res){
     });
 });
 
+router.post('/newUser', function(req, res, next){
+
+    var username = req.body.username;
+    var email    = req.body.email;
+    var password = req.body.password;
+    var role     = req.body.role;
+
+    var newUser = new User({
+        username     : username,
+        email        : email,
+        passwordHash : password,
+        role         : role,
+        created      : Date.now(),
+        updated      : Date.now()
+    });
+
+    newUser.save(function(err){
+        if(err){
+            req.flash('danger', 'Error saving user in database');
+            return next(err);
+        }
+    });
+
+    req.flash('success', 'User successfully saved');
+    res.redirect('/admin/user/getAll');
+})
+
 module.exports = router;
