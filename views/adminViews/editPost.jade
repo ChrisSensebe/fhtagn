@@ -5,7 +5,7 @@ block content
         .row
             .col-md-12
                 h2.page-header  #{page.post.title}
-                form(method="post" action="/admin/savePost")
+                form(method="post" action="/admin/post/savePost")
                     include partials/csrfToken
                     input(id="id" name="id" value="#{page.post._id}" type="hidden")
                     label(for="title") #{page.labelForPostTitle}

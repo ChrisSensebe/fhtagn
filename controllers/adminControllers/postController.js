@@ -8,21 +8,51 @@ var adminLayout = require('../../config/adminLayout');
 var adminPages  = require('../../config/adminPages');
 
 router.get('/getPost/:id', function(req ,res, next){
-    // get post id from form
+
     var id = req.params.id;
-    // page content
+
     var pageContent = {
         adminLayout : adminLayout,
         page : adminPages.postPage
     };
-    // find post in database, render edit post page
+
     Post.findOne({_id : id}, function(err, doc){
         if(err){
             return next(err);
         }
-        // add doc to page content
+
         pageContent.page.post = doc;
         res.render('adminViews/editPost', pageContent);
+    });
+});
+
+router.post('/savePost', function(req ,res, next){
+
+    var id      = req.body.id;
+    var title   = req.body.title;
+    var post    = req.body.post;
+    var tags    = req.body.tags.split(',');
+
+    Post.findOne({_id : id}, function(err, doc){
+
+        if(err){
+            req.flash('danger', 'Error saving post in database');
+            return next(err);
+        }
+
+        doc.title   = title;
+        doc.post    = post;
+        doc.tags    = tags;
+        doc.updated = Date.now();
+
+        doc.save(function(err){
+            if(err){
+                req.flash('danger', 'Error saving post in database');
+                return next(err);
+            }
+            req.flash('success', 'Post successfully updated');
+            res.redirect('/admin/');
+        });
     });
 });
 

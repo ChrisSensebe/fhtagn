@@ -14,36 +14,7 @@ var adminPages  = require('../../config/adminPages.js');
 // get post by id in database, render edit post page
 
 // save post in database
-exports.postSavePost = function(req ,res, next){
-    // get info from form
-    var id      = req.body.id;
-    var title   = req.body.title;
-    var post    = req.body.post;
-    var tags    = req.body.tags.split(',');
-    // find post in database
-    Post.findOne({_id : id}, function(err, doc){
 
-        if(err){
-            req.flash('danger', 'Error saving post in database');
-            return next(err);
-        }
-        // update post object
-        doc.title   = title;
-        doc.post    = post;
-        doc.tags    = tags;
-        doc.updated = Date.now();
-        // save post in database, set flash message, redirect to admin homepage
-        doc.save(function(err){
-
-            if(err){
-                req.flash('danger', 'Error saving post in database');
-                return next(err);
-            }
-            req.flash('success', 'Post successfully updated');
-            res.redirect('/admin/');
-        });
-    });
-};
 // find and delete post from database
 exports.postDelPost = function(req, res, next){
     // get postId from request
