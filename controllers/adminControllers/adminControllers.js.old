@@ -6,11 +6,7 @@ var adminPages  = require('../../config/adminPages.js');
 // find all post in database, render admin homepage
 
 // set goodbye flash message, log user out, redirect to site homepage
-exports.getLogout = function(req, res){
-    req.flash('success', 'bye');
-    req.logout();
-    res.redirect('/');
-};
+
 // render create newpost page
 
 // save new post in database

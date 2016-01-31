@@ -6,9 +6,11 @@ var router               = express.Router();
 var isLogged             = require('../../middlewares/isLogged');
 var attachAuthentication = require('../../middlewares/attachAuthentication');
 
-router.use('/admin/login', require('./loginController'));
+router.use('/admin/login',  require('./loginController'));
 router.use('/admin/*', isLogged, attachAuthentication);
-router.use('/admin/',      require('./adminHomeController'));
-router.use('/admin/post',  require('./postController'));
+router.use('/admin/',       require('./adminHomeController'));
+router.use('/admin/post',   require('./postController'));
+
+router.use('/admin/logout', require('./logoutController'));
 
 module.exports = router;
