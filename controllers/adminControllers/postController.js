@@ -90,4 +90,18 @@ router.post('/newPost', function(req, res, next){
     res.redirect('/admin/');
 });
 
+router.post('/delPost', function(req, res, next){
+    // get postId from request
+    var postId = req.body.postId;
+    //delete post in database
+    Post.remove({_id : postId}, function(err){
+        if(err){
+            req.flash('danger', 'Error deleting post from database');
+            return next(err);
+        }
+        req.flash('success', 'Post successfully deleted');
+        res.redirect('/admin/');
+    });
+});
+
 module.exports = router;

@@ -14,7 +14,7 @@ block content
                     p #{page.dateUpdatedText + post.updated}
                     p #{page.authorText + post.author}
                     p #{page.tagsText + post.tags}
-                        form(method="post" action="/admin/delPost")
+                        form(method="post" action="/admin/post/delPost")
                             include partials/csrfToken
                             input(type="hidden" id="postId" name="postId" value="#{post.id}")
                             button.btn.btn-danger #{page.deletePostButtonText}
