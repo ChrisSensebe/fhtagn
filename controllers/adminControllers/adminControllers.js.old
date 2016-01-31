@@ -38,6 +38,3 @@ var adminPages  = require('../../config/adminPages.js');
 // render theme page
 
 // save theme in db, redirect to them
-exports.postSaveSettings = function(req, res){
-    res.redirect('/admin/siteSettings');
-};

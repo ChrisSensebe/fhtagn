@@ -13,4 +13,8 @@ router.get('/', function(req, res){
     });
 });
 
+router.post('/', function(req, res){
+    res.redirect('/admin/siteSettings');
+});
+
 module.exports = router;
