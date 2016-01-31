@@ -7,9 +7,9 @@ block content
                 h2.page-header  #{page.post.title}
                 form(method="post" action="/admin/post/savePost")
                     include partials/csrfToken
-                    input(id="id" name="id" value="#{page.post._id}" type="hidden")
+                    input(id="id" name="id" value="#{pageContent.post._id}" type="hidden")
                     label(for="title") #{page.labelForPostTitle}
-                    input(id="title" name="title" class="form-control" value="#{page.post.title}" required)
+                    input(id="title" name="title" class="form-control" value="#{pageContent.post.title}" required)
                     label(for="post") #{page.labelForPost}
                     textarea(id="post" name="post" class="form-control text-form" required)= page.post.post
                     label(for="tags") #{page.labelForPost}

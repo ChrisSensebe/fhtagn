@@ -12,7 +12,7 @@ block content
                     p
                         a(href="/admin/user/getUser/#{user.id}" class="btn btn-primary") #{page.editUserButtonText}
                     p
-                        form(method="post" action="/admin/delUser")
+                        form(method="post" action="/admin/user/delUser")
                             include partials/csrfToken
                             input(type="hidden" id="delUser" name="delUser" value="#{user.id}")
                             button.btn.btn-danger #{page.deleteUserButtonText}

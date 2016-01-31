@@ -7,13 +7,57 @@ var User        = require('../../models/user');
 var adminLayout = require('../../config/adminLayout');
 var adminPages  = require('../../config/adminPages');
 
-router.get('/getUser/:id', function(req, res){
+router.get('/getUser/:id', function(req, res, next){
 
-    res.render('adminViews/newUser', {
+    var id = req.params.id;
+
+    var pageContent = {
         adminLayout : adminLayout,
         page : adminPages.newUserPage
+    };
+
+    User.findOne({_id : id}, function(err, doc){
+        if(err){
+            return next(err);
+        }
+        pageContent.user = doc;
+        res.render('adminViews/newUser', pageContent);
     });
 });
+
+router.post('/saveUser', function(req, res, next){
+
+    var id       = req.body.id;
+    var username = req.body.username;
+    var email    = req.body.email;
+    if(req.body.password){
+        var password = req.body.password;
+    }
+    var role = req.body.role;
+
+    User.findOne({_id : id}, function(err, doc){
+        if(err){
+            return next(err);
+        }
+
+        doc.username = username;
+        doc.email    = email;
+        if(password){
+            doc.passwordHash = password;
+        }
+        doc.role = role;
+        doc.updated  = Date.now();
+
+        doc.save(function(err){
+            if(err){
+                req.flash('danger', 'Error saving user in database');
+                return next(err);
+            }
+        });
+        req.flash('success', 'User successfully saved');
+        res.redirect('/admin/user/getAll');
+    });
+})
 
 router.get('/getAll', function(req, res, next){
 
@@ -65,6 +109,20 @@ router.post('/newUser', function(req, res, next){
 
     req.flash('success', 'User successfully saved');
     res.redirect('/admin/user/getAll');
-})
+});
+
+router.post('/delUser', function(req, res, next){
+
+    var userId = req.body.delUser;
+
+    User.remove({_id : userId}, function(err){
+        if(err){
+            req.flash('danger', 'Error deleting user from database');
+            return next(err);
+        }
+        req.flash('success', 'User succesfully deleted');
+        res.redirect('/admin/user/getAll');
+    });
+});
 
 module.exports = router;

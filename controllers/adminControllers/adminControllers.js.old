@@ -26,53 +26,9 @@ var adminPages  = require('../../config/adminPages.js');
 // save new user in database, redirect to users page
 
 // find user in database, update user, redirect to users page
-exports.postSaveUser = function(req, res, next){
-    // get user info from form
-    var id       = req.body.id;
-    var username = req.body.username;
-    var email    = req.body.email;
-    if(req.body.password){
-        var password = req.body.password;
-    }
-    var role = req.body.role;
-    // find user in database
-    User.findOne({_id : id}, function(err, doc){
-        if(err){
-            return next(err);
-        }
-        // update user
-        doc.username = username;
-        doc.email    = email;
-        if(password){
-            doc.passwordHash = password;
-        }
-        doc.role = role;
-        doc.updated  = Date.now();
-        // save user in database
-        doc.save(function(err){
-            if(err){
-                req.flash('danger', 'Error saving user in database');
-                return next(err);
-            }
-        });
-        req.flash('success', 'User successfully saved');
-        res.redirect('/admin/users');
-    });
-};
+
 // del user from database, redirect to users
-exports.postDelUser = function(req, res, next){
-    // get user id
-    var userId = req.body.delUser;
-    // delete user from database
-    User.remove({_id : userId}, function(err){
-        if(err){
-            req.flash('danger', 'Error deleting user from database');
-            return next(err);
-        }
-        req.flash('success', 'User succesfully deleted');
-        res.redirect('/admin/users');
-    });
-};
+
 // render files page
 exports.getFiles = function(req, res){
     res.render('adminViews/files', {
