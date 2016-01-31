@@ -1,8 +1,8 @@
 /**
  * Created by csensebe on 30/01/2016.
  */
-var express    = require('express');
-var router     = express.Router();
+var express     = require('express');
+var router      = express.Router();
 var Post        = require('../../models/post');
 var adminLayout = require('../../config/adminLayout');
 var adminPages  = require('../../config/adminPages');
