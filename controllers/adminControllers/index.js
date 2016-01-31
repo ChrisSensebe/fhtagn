@@ -10,6 +10,7 @@ router.use('/admin/login',  require('./loginController'));
 router.use('/admin/*', isLogged, attachAuthentication);
 router.use('/admin/',       require('./adminHomeController'));
 router.use('/admin/post',   require('./postController'));
+router.use('/admin/user',   require('./userController'));
 
 router.use('/admin/logout', require('./logoutController'));
 

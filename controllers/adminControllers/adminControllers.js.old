@@ -18,22 +18,7 @@ var adminPages  = require('../../config/adminPages.js');
 // find and delete post from database
 
 // find users in database, render users page
-exports.getUsers = function(req, res, next){
-    // page content
-    var pageContent = {
-        adminLayout : adminLayout,
-        page : adminPages.usersPage
-    };
-    // find all users in database, render users page
-    User.find().exec(function(err, docs){
-        if(err){
-            return next(err);
-        }
-        // add users to page content, render page
-        pageContent.page.users = docs;
-        res.render('adminViews/users', pageContent);
-    });
-};
+
 // render new user page
 exports.getNewUser = function(req, res){
     // render new user page
