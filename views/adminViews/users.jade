@@ -10,7 +10,7 @@ block content
                     p= user.email
                     p= user.role
                     p
-                        a(href="/admin/user/#{user.id}" class="btn btn-primary") #{page.editUserButtonText}
+                        a(href="/admin/user/getUser/#{user.id}" class="btn btn-primary") #{page.editUserButtonText}
                     p
                         form(method="post" action="/admin/delUser")
                             include partials/csrfToken

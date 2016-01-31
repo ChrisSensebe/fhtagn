@@ -22,24 +22,7 @@ var adminPages  = require('../../config/adminPages.js');
 // render new user page
 
 // get user in database, render user page
-exports.getUserById = function(req, res, next){
-    // get user id from url
-    var userId = req.params.id;
-    // page content
-    var pageContent = {
-        adminLayout : adminLayout,
-        page : adminPages.userPage
-    }
-    // find user in database, render edit user page
-    User.findOne({_id : userId}, function(err, doc){
-        if(err){
-            return next(err);
-        }
-        // add user to page content, render page
-        pageContent.page.user = doc;
-        res.render('adminViews/user', pageContent);
-    });
-};
+
 // save new user in database, redirect to users page
 exports.postSaveNewUser = function(req, res, next){
     // get user info from form

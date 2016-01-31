@@ -7,6 +7,14 @@ var User        = require('../../models/user');
 var adminLayout = require('../../config/adminLayout');
 var adminPages  = require('../../config/adminPages');
 
+router.get('/getUser/:id', function(req, res){
+
+    res.render('adminViews/newUser', {
+        adminLayout : adminLayout,
+        page : adminPages.newUserPage
+    });
+});
+
 router.get('/getAll', function(req, res, next){
 
     var pageContent = {
