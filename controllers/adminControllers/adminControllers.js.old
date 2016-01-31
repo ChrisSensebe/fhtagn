@@ -30,17 +30,9 @@ var adminPages  = require('../../config/adminPages.js');
 // del user from database, redirect to users
 
 // render files page
-exports.getFiles = function(req, res){
-    res.render('adminViews/files', {
-        adminLayout : adminLayout,
-        page : adminPages.filesPage
-    });
-};
+
 // upload file, redirect to files
-exports.postUpload = function(req, res){
-    req.flash('success', 'File successfully saved');
-    res.redirect('/admin/files');
-};
+
 // delete file, redirect to files
 exports.postDelFile = function(req, res){
     res.redirect('/admin/files');
