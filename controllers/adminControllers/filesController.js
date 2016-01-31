@@ -26,4 +26,8 @@ router.post('/', upload.single('image'), function(req, res){
     res.redirect('/admin/files');
 });
 
+router.post('/delFile', function(req, res){
+    res.redirect('/admin/files');
+});
+
 module.exports = router;

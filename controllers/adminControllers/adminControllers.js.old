@@ -34,9 +34,7 @@ var adminPages  = require('../../config/adminPages.js');
 // upload file, redirect to files
 
 // delete file, redirect to files
-exports.postDelFile = function(req, res){
-    res.redirect('/admin/files');
-};
+
 // render theme page
 exports.getSettings = function(req, res){
     res.render('adminViews/settings', {
