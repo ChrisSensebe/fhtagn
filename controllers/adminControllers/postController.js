@@ -21,7 +21,7 @@ router.get('/getPost/:id', function(req ,res, next){
             return next(err);
         }
 
-        pageContent.page.post = doc;
+        pageContent.post = doc;
         res.render('adminViews/editPost', pageContent);
     });
 });

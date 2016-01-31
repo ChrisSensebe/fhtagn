@@ -4,14 +4,14 @@ block content
     .container
         .row
             .col-md-12
-                h2.page-header  #{page.post.title}
+                h2.page-header  #{pageContent.post.title}
                 form(method="post" action="/admin/post/savePost")
                     include partials/csrfToken
                     input(id="id" name="id" value="#{pageContent.post._id}" type="hidden")
-                    label(for="title") #{page.labelForPostTitle}
+                    label(for="title") #{pageContent.page.labelForPostTitle}
                     input(id="title" name="title" class="form-control" value="#{pageContent.post.title}" required)
-                    label(for="post") #{page.labelForPost}
-                    textarea(id="post" name="post" class="form-control text-form" required)= page.post.post
-                    label(for="tags") #{page.labelForPost}
-                    input(id="tags" name="tags" class="form-control" value="#{page.post.tags}")
-                    button.btn.btn-primary.btn-form #{page.saveButtonText}
+                    label(for="post") #{pageContent.page.labelForPost}
+                    textarea(id="post" name="post" class="form-control text-form" required)= pageContent.post.post
+                    label(for="tags") #{pageContent.page.labelForPost}
+                    input(id="tags" name="tags" class="form-control" value="#{pageContent.post.tags}")
+                    button.btn.btn-primary.btn-form #{pageContent.page.saveButtonText}
